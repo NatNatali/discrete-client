@@ -23,7 +23,7 @@ const SignIn = () => {
                                })}
                            />
                        </div>
-                        {errors.email && <p>{errors.email.message}</p>}
+                        {errors.email && <p className='l-error'>{errors.email.message}</p>}
                         <label htmlFor="">Password</label>
                         <input
                             name="password"
@@ -36,7 +36,7 @@ const SignIn = () => {
                                 }})
                             }
                         />
-                        {errors.password && <p>{errors.password.message}</p>}
+                        {errors.password && <p className='l-error'>{errors.password.message}</p>}
                         <div className='l-button'><button>SUMBIT</button></div>
                     </form>
 
