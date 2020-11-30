@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
             <Home />
           </Route>
         </Switch>
+          <Footer />
       </Router>
   );
 }

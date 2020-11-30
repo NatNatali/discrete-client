@@ -6,7 +6,7 @@ const SignUp = () => {
     const password = useRef({});
     password.current = watch("password", "");
     const onSubmit = data => { console.log(data) }
-    return <div>
+    return <div className='main'>
         <div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input

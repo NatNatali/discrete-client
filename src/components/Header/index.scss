@@ -1,0 +1,31 @@
+* {
+  text-decoration: none;
+  color: black;
+}
+
+.h-header {
+  border: 1px solid;
+  width: 100%;
+  height: 70px;
+  box-sizing: border-box;
+}
+
+.h-content {
+  width: 90%;
+  padding: 24px;
+  display: flex;
+  margin: auto;
+}
+
+.h-menu {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.hm-item {
+  margin-left: 25px;
+  :hover{
+    text-decoration: underline;
+  }
+}
