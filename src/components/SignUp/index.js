@@ -12,14 +12,15 @@ const SignUp = () => {
     const onSubmit = data => { console.log(data) }
     return <Container>
         <div className='r-texts'>
-            <div className='r-title'>Sign Up</div>
-            <div className='r-question'>Already have an account? <Link to="/sign-in"><span>Sign In</span></Link></div>
+            <div className='r-title'>Գրանցում</div>
+            <div className='r-question'>Եթե արդեն ունես account <Link to="/sign-in"><span>մուտք գործիր</span></Link></div>
         </div>
         <div className='r-form-content'>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
-                    <label htmlFor="">First Name</label>
+                    <label htmlFor="">Անուն</label>
                     <input
+                        className={errors.first_name ? 'red-input' : 'input'}
                         name="first_name"
                         type='text'
                         ref={register({
@@ -29,8 +30,9 @@ const SignUp = () => {
                 </div>
                 {errors.first_name && <p className='r-error'>{errors.first_name.message}</p>}
                 <div>
-                    <label htmlFor="">Last Name</label>
+                    <label htmlFor="">Ազգանուն</label>
                     <input
+                        className={errors.last_name ? 'red-input' : 'input'}
                         name="last_name"
                         type='text'
                         ref={register({
@@ -40,8 +42,9 @@ const SignUp = () => {
                 </div>
                 {errors.last_name && <p className='r-error'>{errors.last_name.message}</p>}
                 <div>
-                    <label htmlFor="">Email</label>
+                    <label htmlFor="">Էլ-հասցե</label>
                     <input
+                        className={errors.email ? 'red-input' : 'input'}
                         name="email"
                         type='email'
                         ref={register({
@@ -51,8 +54,9 @@ const SignUp = () => {
                 </div>
                 {errors.email && <p className='r-error'>{errors.email.message}</p>}
                 <div>
-                    <label htmlFor="">Password</label>
+                    <label htmlFor="">Գաղտնաբառ</label>
                     <input
+                        className={errors.password ? 'red-input' : 'input'}
                         name="password"
                         type='password'
                         ref={register({
@@ -66,8 +70,9 @@ const SignUp = () => {
                 </div>
                 {errors.password && <p className='r-error'>{errors.password.message}</p>}
                 <div>
-                    <label htmlFor="">Confirm Password</label>
+                    <label htmlFor="">Կրկնել գաղտնաբառը</label>
                     <input
+                        className={errors.conf_password ? 'red-input' : 'input'}
                         name="conf_password"
                         type='password'
                         ref={register({

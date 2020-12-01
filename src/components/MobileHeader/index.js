@@ -8,19 +8,19 @@ const MobileHeader = () => {
 
     const mobile_menu_item = [
         {
-            name: 'Home',
+            name: 'Գլխավոր էջ',
             link: '/'
         },{
-            name: 'About',
+            name: 'Մեր մասին',
             link: '/about'
         },{
-            name: 'Contact',
+            name: 'Կապ',
             link: '/contact'
         },{
-            name: 'Sign In',
+            name: 'Մուտք',
             link: '/sign-in'
         },{
-            name: 'Sign Up',
+            name: 'Գրանցում',
             link: '/sign-up'
         },
     ];

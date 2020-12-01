@@ -11,13 +11,13 @@ const SignIn = () => {
     return <Container>
             <div>
                 <div className='l-texts'>
-                    <div className='l-h1'>Sign In</div>
-                    <div className='l-question'>Don't have an account?  <Link to="/sign-up"><span>Sign Up</span></Link></div>
+                    <div className='l-h1'>Մուտք</div>
+                    <div className='l-question'>Եթե չունես account  <Link to="/sign-up"><span>գրանցվիր</span></Link></div>
                 </div>
                 <div className='l-form-content'>
                     <form onSubmit={handleSubmit(onSubmit)}>
                        <div className='email-input'>
-                           <label htmlFor="">Email</label>
+                           <label htmlFor="">Էլ-հասցե</label>
                            <input
                                className={errors.email ? 'red-input' : 'input'}
                                name="email"
@@ -29,7 +29,7 @@ const SignIn = () => {
                        </div>
                         {errors.email && <p className='l-error'>{errors.email.message}</p>}
                         <div className='pass-input'>
-                            <label htmlFor="">Password</label>
+                            <label htmlFor="">Գաղտնաբառ</label>
                             <input
                                 className={errors.password ? 'red-input' : 'input'}
                                 name="password"
