@@ -3,19 +3,36 @@ import { Link } from "react-router-dom";
 import './index.scss';
 
 const Header = () => {
-    return <div className='h-header'>
-        <div className='h-content'>
-            <div className='h-logo'><Link to="/">LOGO</Link></div>
-            <div className='h-menu'>
-                <div className='hm-item'><Link to="/">Home</Link></div>
-                <div className='hm-item'>About</div>
-                <div className='hm-item'>Contact</div>
-                <div className='hm-item'>Comments</div>
-                <div className='hm-item'><Link to="/sign-in">Sign In</Link></div>
-                <div className='hm-item'><Link to="/sign-up">Sign Up</Link></div>
+    const menu_item = [
+        {
+            name: 'Home',
+            link: '/'
+        },{
+            name: 'About',
+            link: '/about'
+        },{
+            name: 'Contact',
+            link: '/contact'
+        },{
+            name: 'Sign In',
+            link: '/sign-in'
+        },{
+            name: 'Sign Up',
+            link: '/sign-up'
+        },
+    ];
+
+    return ( <div className='menu'>
+            <div className='menu-logo'>LOGO</div>
+            <div className='menu-items-container'>
+            {
+                menu_item.map((item, index) => {
+                    return <div className='menu-item' key={index}><Link to={item.link}>{item.name}</Link></div>
+                })
+            }
             </div>
         </div>
-    </div>
+    );
 }
 
 export default Header;

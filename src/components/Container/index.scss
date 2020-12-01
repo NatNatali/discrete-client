@@ -1,4 +1,4 @@
-$h-height: 70px;
+$h-height: 83px;
 $f-height: 50px;
 $full-height: 100vh;
 
@@ -7,5 +7,6 @@ $full-height: 100vh;
 }
 
 .main {
-  height: calc(#{$full-height} - #{$f-height} - #{$h-height});
+  min-height: calc(#{$full-height} - #{$f-height} - #{$h-height});
 }
+

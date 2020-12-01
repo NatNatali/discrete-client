@@ -1,0 +1,50 @@
+.mobile-menu {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid;
+  .menu-items-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+  }
+  .menu-logo {
+    padding: 30px;
+  }
+  .menu-items {
+    margin-right: 15px;
+  }
+}
+
+.menu-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.menu-field {
+  position: absolute;
+  padding: 30px;
+  width: 20%;
+  text-align: center;
+  background-color: white;
+  border: 1px solid;
+}
+
+.menu-items {
+  margin-bottom: 15px;
+}
+
+.menu-field-none {
+  display: none;
+}
+.menu-button {
+  cursor: pointer;
+  padding: 30px;
+}
+
+@media screen and (min-width: 650px){
+  .mobile {
+    display: none;
+  }
+}
+
+
