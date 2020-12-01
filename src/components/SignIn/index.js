@@ -19,6 +19,7 @@ const SignIn = () => {
                        <div className='email-input'>
                            <label htmlFor="">Email</label>
                            <input
+                               className={errors.email ? 'red-input' : 'input'}
                                name="email"
                                type='email'
                                ref={register({
@@ -30,6 +31,7 @@ const SignIn = () => {
                         <div className='pass-input'>
                             <label htmlFor="">Password</label>
                             <input
+                                className={errors.password ? 'red-input' : 'input'}
                                 name="password"
                                 type='password'
                                 ref={register({

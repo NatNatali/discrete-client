@@ -6,12 +6,12 @@
     display: flex;
     justify-content: space-between;
     padding: 30px;
+    .menu-item {
+      margin-right: 15px;
+    }
   }
   .menu-logo {
     padding: 30px;
-  }
-  .menu-item {
-    margin-right: 15px;
   }
 }
 

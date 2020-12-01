@@ -15,11 +15,18 @@
   }
   .l-error {
     color: red;
-    margin-top: -18px;
+    margin-top: 0px;
     box-sizing: border-box;
   }
   .email-input, .pass-input {
     padding-bottom: 8px;
+  }
+  .red-input {
+    border: 2px solid red;
+  }
+
+  .input {
+    border: 1px solid black;
   }
 }
 
@@ -37,6 +44,8 @@
     }
   }
 }
+
+
 
 
 
