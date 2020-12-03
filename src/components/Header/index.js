@@ -22,9 +22,9 @@ const Header = () => {
         },
     ];
 
-    return ( <div className='menu'>
-            <div className='menu-logo'>LOGO</div>
-            <div className='menu-items-container'>
+    return ( <div className='h-header'>
+            <div className='h-logo'>LOGO</div>
+            <div className='h-items-container'>
             {
                 menu_item.map((item, index) => {
                     return <div className='menu-item' key={index}><Link to={item.link}>{item.name}</Link></div>

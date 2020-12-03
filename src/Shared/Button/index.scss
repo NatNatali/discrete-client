@@ -1,0 +1,22 @@
+button {
+  width: 569px;
+  height: 104px;
+  background-color: #306407;
+  font-size: 40px;
+  line-height: 47px;
+  color: #FFE9E9;
+  &:hover {
+    background: #40840B;
+  }
+  &:active {
+    background: #306407;
+  }
+  &:focus {
+    background: #5FB71A;
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}

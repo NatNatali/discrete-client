@@ -4,9 +4,7 @@ import './index.scss';
 
 const Footer = () => {
     return <div className='f-footer'>
-        <div className='f-content'>
             <div>Footer</div>
-        </div>
 
     </div>
 }
