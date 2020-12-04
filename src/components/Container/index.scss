@@ -1,10 +1,6 @@
-$h-height: 83px;
-$f-height: 50px;
+$h-height: 150px;
+$f-height: 255px;
 $full-height: 100vh;
-
-.container {
-  padding: 24px;
-}
 
 .main {
   min-height: calc(#{$full-height} - #{$f-height} - #{$h-height});

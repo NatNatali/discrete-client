@@ -3,7 +3,7 @@ import './index.scss'
 
 const Button = () => {
     return <div className='button-container'>
-            <button>Click to start learning!</button>
+            <button type='submit' name='submit'>Submit</button>
         </div>
 }
 

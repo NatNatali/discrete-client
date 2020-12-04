@@ -16,7 +16,13 @@ const SignUp = () => {
 
     let location = useLocation();
     const inSignUp = location.pathname === '/sign-up'
+    const pattern = new RegExp('^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\\W).*$')
 
+    const validatePassword = value => {
+        if (value.length) {
+            return pattern.test(value);
+        }
+    }
 
     const form_item = inSignUp ? [
         {
@@ -50,10 +56,7 @@ const SignUp = () => {
             type: 'password',
             register: register({
                 required: "Լրացրեք գաղտնաբառ",
-                minLength: {
-                    value: 8,
-                    message: "Գաղտնաբառը պետք է ունենա 8 նիշ"
-                }
+                validate: value => validatePassword(value) || 'password should contain ... and must be min 8 char'
             })
         }, {
             label: 'Կրկնել գաղտնաբառը',
@@ -66,7 +69,6 @@ const SignUp = () => {
                     value === password.current || "Ստուգեք ձեր գաղտնաբառը"
             })
         },
-
     ] : [{
         label: 'Էլ-հասցե',
         placeholder: 'Էլ-հասցե',
@@ -82,10 +84,7 @@ const SignUp = () => {
         type: 'password',
         register: register({
             required: "Լրացրեք գաղտնաբառ",
-            minLength: {
-                value: 8,
-                message: "Գաղտնաբառը պետք է ունենա 8 նիշ"
-            }
+            validate: value => validatePassword(value) || '1 uppercase, 1 lowercase, 1 number, 1 special character and must be min 8 length'
         })
     }];
 
@@ -112,27 +111,28 @@ const SignUp = () => {
                 }
             </div>
         </div>
-        <div className='empty-div' />
         <div className='form-container'>
-            <div className='form-content'>
-                <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className='form-content'>
                     {form_item.map((item, index) => {
                         return <div className='form-item-wrapper' key={index}>
-                            <div className='form-item-label'>{item.label}:</div>
-                            <div className='form-item-input'><Input
-                                placeholder={item.placeholder}
-                                variant='filled'
-                                name={item.name}
-                                type={item.type}
-                                ref={item.register}
-                            /></div>
+                            <div className='form-item-label'>{item.label}</div>
+                            <div className='form-item-input'>
+                                <Input
+                                    placeholder={item.placeholder}
+                                    variant='filled'
+                                    name={item.name}
+                                    type={item.type}
+                                    inputRef={item.register}
+                                />
+                                {errors[item.name] && <span>{errors[item.name].message}</span>}
+                            </div>
                         </div>
                     })}
-                    <Button />
-                </form>
-            </div>
+                </div>
+                <Button />
+            </form>
         </div>
-        <div className='empty-div2'/>
     </Container>
 }
 

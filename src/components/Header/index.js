@@ -1,33 +1,42 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
+import mainLogo from  '../../images/logo_transparent.png'
 import './index.scss';
 
 const Header = () => {
+
+    let location = useLocation();
+
     const menu_item = [
         {
             name: 'Գլխավոր էջ',
-            link: '/'
+            link: '/',
+            className: 'menu-item menu-item--color'
         },{
             name: 'Մեր մասին',
-            link: '/about'
+            link: '/about',
+            className: 'menu-item menu-item--color'
         },{
             name: 'Կապ',
-            link: '/contact'
+            link: '/contact',
+            className: 'menu-item menu-item-color'
         },{
             name: 'Մուտք',
-            link: '/sign-in'
+            link: '/sign-in',
+            className: 'menu-item menu-item-color'
         },{
             name: 'Գրանցում',
-            link: '/sign-up'
+            link: '/sign-up',
+            className: 'menu-item menu-item-color'
         },
     ];
 
     return ( <div className='h-header'>
-            <div className='h-logo'>LOGO</div>
+            <div className='h-logo'><img src={mainLogo} alt=""/></div>
             <div className='h-items-container'>
             {
                 menu_item.map((item, index) => {
-                    return <div className='menu-item' key={index}><Link to={item.link}>{item.name}</Link></div>
+                    return <div className={ location.pathname === item.link ? item.className : 'menu-item'} key={index}><Link to={item.link}>{item.name}</Link></div>
                 })
             }
             </div>

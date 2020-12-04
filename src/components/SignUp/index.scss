@@ -19,17 +19,17 @@
 .form-container {
   display: flex;
   justify-content: center;
+  padding: 5% 0;
+  form {
+    width: 60%;
+    }
   .form-content {
     border: 2px solid #978585;
-    flex-basis: 60%;
-    form {
-      width: 100%;
       .label-input {
         margin-top: 56px;
         &:last-child {
           margin-bottom: 56px;
         }
-      }
     }
     .form-item-wrapper {
       display: flex;
@@ -54,14 +54,4 @@
     }
   }
 }
-
-.empty-div {
-  height: 72px;
-}
-
-.empty-div2 {
-  height: 112px;
-}
-
-
 

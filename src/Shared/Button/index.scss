@@ -1,10 +1,11 @@
 button {
-  width: 569px;
-  height: 104px;
+  width: 30%;
+  height: 88px;
   background-color: #306407;
-  font-size: 40px;
-  line-height: 47px;
   color: #FFE9E9;
+  font-size: 40px;
+  border: none;
+  outline: none;
   &:hover {
     background: #40840B;
   }
@@ -19,4 +20,6 @@ button {
 .button-container {
   display: flex;
   justify-content: center;
+  padding: 3% 0;
 }
+
