@@ -56,7 +56,7 @@ const SignUp = () => {
             type: 'password',
             register: register({
                 required: "Լրացրեք գաղտնաբառ",
-                validate: value => validatePassword(value) || 'password should contain ... and must be min 8 char'
+                validate: value => validatePassword(value) || '1 uppercase, 1 lowercase, 1 number, 1 special character and must be min 8 length'
             })
         }, {
             label: 'Կրկնել գաղտնաբառը',
@@ -119,13 +119,14 @@ const SignUp = () => {
                             <div className='form-item-label'>{item.label}</div>
                             <div className='form-item-input'>
                                 <Input
+                                    error={!!errors[item.name]}
                                     placeholder={item.placeholder}
                                     variant='filled'
                                     name={item.name}
                                     type={item.type}
                                     inputRef={item.register}
                                 />
-                                {errors[item.name] && <span>{errors[item.name].message}</span>}
+                                {errors[item.name] && <span className='error-message'>{errors[item.name].message}</span>}
                             </div>
                         </div>
                     })}
