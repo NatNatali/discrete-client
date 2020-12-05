@@ -6,16 +6,24 @@ import Container from "../Container";
 import {Link} from "react-router-dom";
 import Input from "../../Shared/Input";
 import { useLocation } from "react-router-dom";
+import axios  from 'axios'
 
 
 const SignUp = () => {
+    let location = useLocation();
+    const inSignUp = location.pathname === '/sign-up'
+
     const { register, handleSubmit, watch, errors } = useForm()
     const password = useRef({});
     password.current = watch("password", "");
-    const onSubmit = data => { console.log(data) }
+    const onSubmit = data => {
+        if(inSignUp) {
+            axios.post(`http://localhost:3030/users/sign-up`, data)
+        } else {
+            axios.post(`http://localhost:3030/auth/sign-in`, data).then(res => localStorage.setItem('token', res.data.token))
+        }
+    }
 
-    let location = useLocation();
-    const inSignUp = location.pathname === '/sign-up'
     const pattern = new RegExp('^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\\W).*$')
 
     const validatePassword = value => {
