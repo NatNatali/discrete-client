@@ -7,6 +7,9 @@ const useStyles = makeStyles({
         '& .MuiInputBase-root': {
             borderRadius: '0'
         },
+        '&.MuiTextField-root': {
+            width: '100%'
+        },
         '& .MuiInputBase-root.Mui-focused': {
             outline: '2px solid #B7D69F',
             border: 'none'

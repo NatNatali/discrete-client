@@ -48,15 +48,13 @@
     }
     .form-item-input {
       flex-basis: 40%;
-      .MuiTextField-root {
-        width: 100%;
+      .error-message {
+        color: #A91919;
+        font-weight: bold;
       }
     }
   }
 }
 
-.error-message {
-  color: #A91919;
-  font-weight: bold;
-}
+
 
