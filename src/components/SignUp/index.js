@@ -139,7 +139,7 @@ const SignUp = () => {
                         </div>
                     })}
                 </div>
-                <Button />
+                <Button buttonName='Submit' />
             </form>
         </div>
     </Container>
