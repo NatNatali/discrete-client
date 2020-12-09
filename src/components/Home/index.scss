@@ -5,14 +5,8 @@
   font-size: 30px;
 }
 
-.contentStyle {
-  text-align: center;
-  display: flex !important;
-  justify-content: space-around;
-  margin-bottom: 60px;
-}
 .homepage-carousel-card {
-  flex-basis: 40%;
+  flex-basis: 50%;
   display: inline-block;
 }
 
@@ -24,8 +18,34 @@
     background-color: black !important;
   }
 }
+.contentStyle {
+  text-align: center;
+  display: flex !important;
+  justify-content: space-around;
+  margin-bottom: 60px;
+}
 
 .carousel-img {
-  width: 700px;
   height: 466px;
+}
+
+.article-title {
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+  padding-bottom: 50px;
+}
+
+.button-component {
+  padding: 0 50px;
+}
+
+
+.ant-carousel {
+  padding: 0 5%;
+}
+
+.ant-card-body {
+  display: flex;
+  justify-content: center;
 }

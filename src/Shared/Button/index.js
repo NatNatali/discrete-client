@@ -3,8 +3,8 @@ import './index.scss'
 
 const Button = ( { buttonName } ) => {
     return <div className='button-container'>
-            <button type='submit' name='submit' className='button-component'>{buttonName}</button>
-        </div>
+        <button type='submit' name='submit' className='button-component'>{buttonName}</button>
+    </div>
 }
 
 export default Button;

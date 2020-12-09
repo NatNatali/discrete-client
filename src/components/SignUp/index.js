@@ -17,6 +17,7 @@ const SignUp = () => {
     const password = useRef({});
     password.current = watch("password", "");
     const onSubmit = data => {
+        console.log(data);
         if(inSignUp) {
             axios.post(`http://localhost:3030/users/sign-up`, data)
         } else {

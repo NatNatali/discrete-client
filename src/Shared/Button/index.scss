@@ -1,25 +1,24 @@
-.button-component {
-  width: 30%;
-  height: 88px;
-  background-color: #306407;
-  color: #FFE9E9;
-  font-size: 40px;
-  border: none;
-  outline: none;
-  &:hover {
-    background: #40840B;
-  }
-  &:active {
-    background: #306407;
-  }
-  &:focus {
-    background: #5FB71A;
-  }
-}
-
 .button-container {
   display: flex;
   justify-content: center;
   padding: 3% 0;
+  .button-component {
+    height: 88px;
+    background-color: #306407;
+    color: #FFE9E9;
+    font-size: 40px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    &:hover {
+      background: #40840B;
+    }
+    &:active {
+      background: #306407;
+    }
+    &:focus {
+      background: #5FB71A;
+    }
+  }
 }
 
