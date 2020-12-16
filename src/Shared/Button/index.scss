@@ -4,20 +4,20 @@
   padding: 3% 0;
   .button-component {
     height: 88px;
-    background-color: #306407;
+    background-color: #287370;
     color: #FFE9E9;
     font-size: 40px;
     border: none;
     outline: none;
     cursor: pointer;
     &:hover {
-      background: #40840B;
+      background: #084C68;
     }
     &:active {
-      background: #306407;
+      background: #68C181;
     }
     &:focus {
-      background: #5FB71A;
+      background: #68C181;
     }
   }
 }

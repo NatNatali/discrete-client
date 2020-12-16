@@ -1,14 +1,11 @@
 .texts-field {
   text-align: center;
   .sign-up {
-    font-size: 56px;
-    line-height: 66px;
-    margin-top: 72px;
-    margin-bottom: 15px;
+    font-size: 40px;
+    padding-top: 1%;
   }
   .second-text {
-    font-size: 24px;
-    line-height: 32px;
+    font-size: 20px;
     a{
       color: black;
       margin-left: 8px;
@@ -20,24 +17,24 @@
 .form-container {
   display: flex;
   justify-content: center;
-  padding: 5% 0;
+  padding-top: 2%;
   form {
     width: 60%;
     }
   .form-content {
-    border: 2px solid #B7D69F;
+    border: 2px solid #287370;
       .label-input {
-        margin-top: 56px;
+        padding-top: 3%;
         &:last-child {
-          margin-bottom: 56px;
+          padding-bottom: 3%;
         }
     }
     .form-item-wrapper {
       display: flex;
       justify-content: center;
-      margin-bottom: 56px;
+      padding-bottom: 3%;
       &:first-child {
-        margin-top: 56px;
+        padding-top: 3%;
       }
     }
     .form-item-label{

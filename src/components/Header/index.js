@@ -17,10 +17,6 @@ const Header = () => {
             link: '/lessons',
             className: 'menu-item menu-item-color'
         },{
-            name: 'Մեր մասին',
-            link: '/about',
-            className: 'menu-item menu-item-color'
-        },{
             name: 'Մեկնաբանություն',
             link: '/comments',
             className: 'menu-item menu-item-color'

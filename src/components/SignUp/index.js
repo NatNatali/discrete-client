@@ -26,10 +26,17 @@ const SignUp = () => {
     }
 
     const pattern = new RegExp('^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\\W).*$')
+    const emPattern = new RegExp('(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\\])')
 
     const validatePassword = value => {
         if (value.length) {
             return pattern.test(value);
+        }
+    }
+
+    const validateEmail = value => {
+        if (value.length) {
+            return emPattern.test(value);
         }
     }
 
@@ -40,7 +47,7 @@ const SignUp = () => {
             name: "first_name",
             type: 'text',
             register: register({
-                required: "Լրացրեք ձեր անունը"
+                required: "Մուտքագրեք ձեր անունը"
             })
         }, {
             label: 'Ազգանուն',
@@ -48,15 +55,16 @@ const SignUp = () => {
             name: "last_name",
             type: 'text',
             register: register({
-                required: "Լրացրեք ձեր ազգանունը"
+                required: "Մուտքագրեք ձեր ազգանունը"
             })
         }, {
             label: 'Էլ-հասցե',
             placeholder: 'Էլ-հասցե',
             name: "email",
-            type: 'email',
+            type: 'text',
             register: register({
-                required: "Լրացրեք ձեր էլեկտրոնային հասցեն",
+                required: "Մուտքագրեք ձեր էլ-հասցեն",
+                validate: value => validateEmail(value) || 'Մուտքագրեք ճիշտ էլ-հասցե'
             })
         }, {
             label: 'Գաղտնաբառ',
@@ -64,7 +72,7 @@ const SignUp = () => {
             name: "password",
             type: 'password',
             register: register({
-                required: "Լրացրեք գաղտնաբառ",
+                required: "Մուտքագրեք ձեր գաղտնաբառը",
                 validate: value => validatePassword(value) || '1 uppercase, 1 lowercase, 1 number, 1 special character and must be min 8 length'
             })
         }, {
@@ -75,16 +83,17 @@ const SignUp = () => {
             register: register({
                 required: "Կրկնեք գաղտնաբառը",
                 validate: value =>
-                    value === password.current || "Ստուգեք ձեր գաղտնաբառը"
+                    value === password.current || "Գաղտնաբառերը չեն համընկնում"
             })
         },
     ] : [{
         label: 'Էլ-հասցե',
         placeholder: 'Էլ-հասցե',
         name: "email",
-        type: 'email',
+        type: 'text',
         register: register({
-            required: "Լրացրեք ձեր էլեկտրոնային հասցեն",
+            required: "Մուտքագրեք ձեր էլ-հասցեն",
+            validate: value => validateEmail(value) || 'Մուտքագրեք ճիշտ էլ-հասցե'
         })
     }, {
         label: 'Գաղտնաբառ',
@@ -92,28 +101,28 @@ const SignUp = () => {
         name: "password",
         type: 'password',
         register: register({
-            required: "Լրացրեք գաղտնաբառ",
-            validate: value => validatePassword(value) || '1 uppercase, 1 lowercase, 1 number, 1 special character and must be min 8 length'
+            required: "Մուտքագրեք ձեր գաղտնաբառը",
+            validate: value => validatePassword(value) || '1 մեծատառ, 1 փոքրատառ, 1 թիվ, 1 սիմվոլ և երկարությունը պետք է լինի մինիմում 8'
         })
     }];
 
     return <Container>
         <div className='texts-field'>
-            <div className='sign-up'>{inSignUp ? 'Sign Up' : 'Sign In'}</div> <br/>
+            <div className='sign-up'>{inSignUp ? 'Գրանցում' : 'Մուտք'}</div> <br/>
             <div className='second-text'>
                 {
                     inSignUp ? (
                         <Fragment>
-                            <span>Already have an account?</span>
+                            <span>Արդեն գրանցվե՞լ ես՝ </span>
                             <Link to="/sign-in">
-                                <span>Sign In</span>
+                                <span>ՄՈՒՏՔ</span>
                             </Link>
                         </Fragment>
                     ) : (
                         <Fragment>
-                            <span>Don't have an account?</span>
+                            <span>Դեռ չե՞ս գրանցվել՝ </span>
                             <Link to="/sign-up">
-                                <span>Sign Up</span>
+                                <span>ԳՐԱՆՑՈՒՄ</span>
                             </Link>
                         </Fragment>
                     )
