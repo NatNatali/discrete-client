@@ -15,7 +15,7 @@ const Header = () => {
             className: 'menu-item menu-item-color'
         },{
             name: 'Դաս',
-            link: '/lessons',
+            link: '/lesson',
             className: 'menu-item menu-item-color'
         },{
             name: 'Մեկնաբանություն',
