@@ -1,0 +1,25 @@
+.level-1 {
+  font-size: 48px;
+}
+
+.level-2 {
+  font-size: 24px;
+}
+
+.level-3 {
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .level-1 {
+    font-size: 36px;
+  }
+
+  .level-2 {
+    font-size: 18px;
+  }
+
+  .level-3 {
+    font-size: 14px;
+  }
+}

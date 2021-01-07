@@ -3,6 +3,7 @@ import {Link, useLocation} from "react-router-dom";
 import mainLogo from  '../../images/logo_transparent 1.png'
 import './index.scss';
 import { UserOutlined } from '@ant-design/icons';
+import Text from "../../Shared/Text";
 
 const Header = () => {
 
@@ -29,10 +30,10 @@ const Header = () => {
             <div className='h-items-container'>
                 {
                     menu_item.map((item, index) => {
-                        return <div className={ location.pathname === item.link ? item.className : 'menu-item'} key={index}><Link to={item.link}>{item.name}</Link></div>
+                        return <div className={ location.pathname === item.link ? item.className : 'menu-item'} key={index}><Link to={item.link}><Text level={2}>{item.name}</Text></Link></div>
                     })
                 }
-                <Link to='/sign-in'><UserOutlined className={ location.pathname === '/sign-in' || location.pathname === '/sign-up' ? 'menu-item menu-item-color' : 'menu-item'}/></Link>
+                <Link to='/sign-in'><Text level={2}><UserOutlined className={ location.pathname === '/sign-in' || location.pathname === '/sign-up' ? 'menu-item menu-item-color' : 'menu-item'}/></Text></Link>
             </div>
         </div>
     );
