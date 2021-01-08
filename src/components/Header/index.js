@@ -2,7 +2,7 @@ import React from 'react';
 import {Link, useLocation} from "react-router-dom";
 import mainLogo from  '../../images/logo_transparent 1.png'
 import './index.scss';
-import { UserOutlined } from '@ant-design/icons';
+import {HomeOutlined, UserOutlined} from '@ant-design/icons';
 import Text from "../../Shared/Text";
 
 const Header = () => {
@@ -11,10 +11,6 @@ const Header = () => {
 
     const menu_item = [
         {
-            name: 'Գլխավոր էջ',
-            link: '/',
-            className: 'menu-item menu-item-color'
-        },{
             name: 'Դաս',
             link: '/lesson',
             className: 'menu-item menu-item-color'
@@ -28,6 +24,7 @@ const Header = () => {
     return ( <div className='h-header'>
             <div className='h-logo'><Link to='/'><img src={mainLogo} alt=""/></Link></div>
             <div className='h-items-container'>
+                <Link to='/'><Text level={2}><HomeOutlined className={ location.pathname === '/' ? 'menu-item menu-item-color' : 'menu-item'}/></Text></Link>
                 {
                     menu_item.map((item, index) => {
                         return <div className={ location.pathname === item.link ? item.className : 'menu-item'} key={index}><Link to={item.link}><Text level={2}>{item.name}</Text></Link></div>

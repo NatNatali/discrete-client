@@ -17,7 +17,7 @@
   justify-content: center;
   padding-top: 2%;
   form {
-    width: 60%;
+    width: 85%;
     }
   .form-content {
     border: 2px solid #609184;
@@ -47,6 +47,17 @@
         color: #A91919;
         font-weight: bold;
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .form-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 2%;
+    form {
+      width: 98%;
     }
   }
 }

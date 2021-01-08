@@ -9,6 +9,7 @@ import Home from "./components/Home";
 import SignUp from "./components/SignUp";
 import Footer from "./components/Footer";
 import Lesson from "./components/Lesson/lesson";
+import CreateLesson from "./components/Admin/Create Lesson";
 
 const App = () => {
   return (
@@ -27,6 +28,9 @@ const App = () => {
           <Route path="/lesson">
             <Lesson />
           </Route>
+            <Route path="/admin">
+                <CreateLesson />
+            </Route>
         </Switch>
           <Footer />
       </Router>

@@ -1,4 +1,4 @@
-import React, { useRef, Fragment } from 'react'
+import React, {useRef, Fragment, useEffect} from 'react'
 import { useForm } from 'react-hook-form'
 import Button from "../../Shared/Button";
 import './index.scss'
@@ -14,7 +14,12 @@ const SignUp = () => {
     let location = useLocation();
     const inSignUp = location.pathname === '/sign-up'
 
-    const { register, handleSubmit, watch, errors } = useForm()
+    const { register, handleSubmit, watch, errors, reset } = useForm()
+
+    useEffect(() => {
+        reset()
+    }, [location.pathname])
+
     const password = useRef({});
     password.current = watch("password", "");
     const onSubmit = data => {
@@ -61,7 +66,7 @@ const SignUp = () => {
         }, {
             label: 'Էլ-հասցե',
             placeholder: 'Էլ-հասցե',
-            name: "email",
+            name: "signUp-email",
             type: 'text',
             register: register({
                 required: "Մուտքագրեք ձեր էլ-հասցեն",
@@ -70,7 +75,7 @@ const SignUp = () => {
         }, {
             label: 'Գաղտնաբառ',
             placeholder: 'Գաղտնաբառ',
-            name: "password",
+            name: "signUp-password",
             type: 'password',
             register: register({
                 required: "Մուտքագրեք ձեր գաղտնաբառը",
@@ -150,7 +155,7 @@ const SignUp = () => {
                         </div>
                     })}
                 </div>
-                <Button>AAAA</Button>
+                <Button>Սեղմել</Button>
             </form>
         </div>
     </Container>
