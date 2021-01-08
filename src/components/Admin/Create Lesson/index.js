@@ -2,11 +2,14 @@ import React from 'react'
 import Input from '../../../Shared/Input'
 import Button from "../../../Shared/Button";
 import {TextareaAutosize, TextField} from "@material-ui/core";
+import Text from "../../../Shared/Text";
+import Container from "../../Container";
+import './index.scss'
 
 const CreateLesson = () => {
-    return <div>
-        <div>
-            <h1>Ավելացնել Դաս</h1>
+    return <Container>
+        <div className='create-lesson'>
+            <Text level={1}>Ավելացնել Դաս</Text>
             <Input type='text'
               label='ՎԵՐՆԱԳԻՐ'
               variant='filled'
@@ -14,18 +17,17 @@ const CreateLesson = () => {
             <TextField
                 label="ԴԱՍԱԽՈՍՈՒԹՅՈՒՆ"
                 multiline
-                rows={4}
+                rows={15}
                 variant="filled"
                 fullWidth
-                rows='15'
             />
             <Button>Ստեղծել</Button>
         </div>
-        <div>
-            <h1>Ավելացնել Թեստ</h1>
+        <div className='create-test'>
+            <Text level={1}>Ավելացնել Թեստ</Text>
             <Button>Ստեղծել</Button>
         </div>
-    </div>
+    </Container>
 }
 
 export default CreateLesson;
