@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 import Input from "../../Shared/Input";
 import { useLocation } from "react-router-dom";
 import axios  from 'axios'
+import Text from "../../Shared/Text";
 
 
 const SignUp = () => {
@@ -108,21 +109,21 @@ const SignUp = () => {
 
     return <Container>
         <div className='texts-field'>
-            <div className='sign-up'>{inSignUp ? 'Գրանցում' : 'Մուտք'}</div> <br/>
+            <Text level={1} className='sign-up'>{inSignUp ? 'Գրանցում' : 'Մուտք'}</Text> <br/>
             <div className='second-text'>
                 {
                     inSignUp ? (
                         <Fragment>
-                            <span>Արդեն գրանցվե՞լ ես՝ </span>
+                            <Text level={2}><span>Արդեն գրանցվե՞լ ես՝ </span></Text>
                             <Link to="/sign-in">
-                                <span>ՄՈՒՏՔ</span>
+                                <Text level={2}><span>ՄՈՒՏՔ</span></Text>
                             </Link>
                         </Fragment>
                     ) : (
                         <Fragment>
-                            <span>Դեռ չե՞ս գրանցվել՝ </span>
+                            <Text level={2}><span>Դեռ չե՞ս գրանցվել՝ </span></Text>
                             <Link to="/sign-up">
-                                <span>ԳՐԱՆՑՈՒՄ</span>
+                                <Text level={2}><span>ԳՐԱՆՑՈՒՄ</span></Text>
                             </Link>
                         </Fragment>
                     )
@@ -134,7 +135,7 @@ const SignUp = () => {
                 <div className='form-content'>
                     {form_item.map((item, index) => {
                         return <div className='form-item-wrapper' key={index}>
-                            <div className='form-item-label'>{item.label}</div>
+                            <div className='form-item-label'><Text level={2}>{item.label}</Text></div>
                             <div className='form-item-input'>
                                 <Input
                                     error={!!errors[item.name]}
@@ -149,7 +150,7 @@ const SignUp = () => {
                         </div>
                     })}
                 </div>
-                <Button buttonName='Submit' />
+                <Button>AAAA</Button>
             </form>
         </div>
     </Container>
