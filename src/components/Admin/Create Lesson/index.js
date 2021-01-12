@@ -1,7 +1,7 @@
 import React from 'react'
 import Input from '../../../Shared/Input'
 import Button from "../../../Shared/Button";
-import {TextareaAutosize, TextField} from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import Text from "../../../Shared/Text";
 import Container from "../../Container";
 import './index.scss'

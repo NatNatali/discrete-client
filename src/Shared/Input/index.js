@@ -10,10 +10,10 @@ const useStyles = makeStyles({
         '&.MuiTextField-root': {
             width: '100%'
         },
-        '& .MuiInputBase-root.Mui-focused': {
-            outline: '2px solid #619273',
-            border: 'none'
-        },
+        // '& .MuiInputBase-root.Mui-focused': {
+        //     outline: '2px solid #619273',
+        //     border: 'none'
+        // },
         '& .MuiFilledInput-underline:after': {
             borderBottom: 'none',
             outline: 'none'

@@ -1,16 +1,19 @@
-import React, {useRef, Fragment, useEffect} from 'react'
+import React, {useRef, Fragment, useEffect, useState} from 'react'
 import { useForm } from 'react-hook-form'
 import Button from "../../Shared/Button";
 import './index.scss'
 import Container from "../Container";
 import {Link} from "react-router-dom";
 import Input from "../../Shared/Input";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import axios  from 'axios'
 import Text from "../../Shared/Text";
+import { Spin } from 'antd';
 
 
 const SignUp = () => {
+    const [loading, setLoading] = useState(false)
+    let history = useHistory();
     let location = useLocation();
     const inSignUp = location.pathname === '/sign-up'
 
@@ -24,10 +27,23 @@ const SignUp = () => {
     password.current = watch("password", "");
     const onSubmit = data => {
         console.log(data);
+
         if(inSignUp) {
-            axios.post(`http://localhost:3030/users/sign-up`, data)
+            setLoading(true);
+            axios.post(`http://localhost:3030/users/sign-up`, data).then(res => {
+                history.push('/sign-in')
+                setLoading(false)
+            })
         } else {
-            axios.post(`http://localhost:3030/auth/sign-in`, data).then(res => localStorage.setItem('token', res.data.token))
+            axios.post(`http://localhost:3030/auth/sign-in`, data).then(res => {
+                localStorage.setItem('token', res.data.token);
+                localStorage.setItem('user-type', res.data.type)
+                if (res.data.type === 'admin') {
+                    history.push('/admin')
+                } else {
+                    history.push('/')
+                }
+            })
         }
     }
 
@@ -66,7 +82,7 @@ const SignUp = () => {
         }, {
             label: 'Էլ-հասցե',
             placeholder: 'Էլ-հասցե',
-            name: "signUp-email",
+            name: "email",
             type: 'text',
             register: register({
                 required: "Մուտքագրեք ձեր էլ-հասցեն",
@@ -75,7 +91,7 @@ const SignUp = () => {
         }, {
             label: 'Գաղտնաբառ',
             placeholder: 'Գաղտնաբառ',
-            name: "signUp-password",
+            name: "password",
             type: 'password',
             register: register({
                 required: "Մուտքագրեք ձեր գաղտնաբառը",
@@ -99,7 +115,6 @@ const SignUp = () => {
         type: 'text',
         register: register({
             required: "Մուտքագրեք ձեր էլ-հասցեն",
-            validate: value => validateEmail(value) || 'Մուտքագրեք ճիշտ էլ-հասցե'
         })
     }, {
         label: 'Գաղտնաբառ',
@@ -113,51 +128,55 @@ const SignUp = () => {
     }];
 
     return <Container>
-        <div className='texts-field'>
-            <Text level={1} className='sign-up'>{inSignUp ? 'Գրանցում' : 'Մուտք'}</Text> <br/>
-            <div className='second-text'>
-                {
-                    inSignUp ? (
-                        <Fragment>
-                            <Text level={2}><span>Արդեն գրանցվե՞լ ես՝ </span></Text>
-                            <Link to="/sign-in">
-                                <Text level={2}><span>ՄՈՒՏՔ</span></Text>
-                            </Link>
-                        </Fragment>
-                    ) : (
-                        <Fragment>
-                            <Text level={2}><span>Դեռ չե՞ս գրանցվել՝ </span></Text>
-                            <Link to="/sign-up">
-                                <Text level={2}><span>ԳՐԱՆՑՈՒՄ</span></Text>
-                            </Link>
-                        </Fragment>
-                    )
-                }
-            </div>
-        </div>
-        <div className='form-container'>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div className='form-content'>
-                    {form_item.map((item, index) => {
-                        return <div className='form-item-wrapper' key={index}>
-                            <div className='form-item-label'><Text level={2}>{item.label}</Text></div>
-                            <div className='form-item-input'>
-                                <Input
-                                    error={!!errors[item.name]}
-                                    placeholder={item.placeholder}
-                                    variant='filled'
-                                    name={item.name}
-                                    type={item.type}
-                                    inputRef={item.register}
-                                />
-                                {errors[item.name] && <span className='error-message'>{errors[item.name].message}</span>}
-                            </div>
-                        </div>
-                    })}
+        <Spin
+            spinning={loading}
+        >
+            <div className='texts-field'>
+                <Text level={1} className='sign-up'>{inSignUp ? 'Գրանցում' : 'Մուտք'}</Text> <br/>
+                <div className='second-text'>
+                    {
+                        inSignUp ? (
+                            <Fragment>
+                                <Text level={2}><span>Արդեն գրանցվե՞լ ես՝ </span></Text>
+                                <Link to="/sign-in">
+                                    <Text level={2}><span>ՄՈՒՏՔ</span></Text>
+                                </Link>
+                            </Fragment>
+                        ) : (
+                            <Fragment>
+                                <Text level={2}><span>Դեռ չե՞ս գրանցվել՝ </span></Text>
+                                <Link to="/sign-up">
+                                    <Text level={2}><span>ԳՐԱՆՑՈՒՄ</span></Text>
+                                </Link>
+                            </Fragment>
+                        )
+                    }
                 </div>
-                <Button>Սեղմել</Button>
-            </form>
-        </div>
+            </div>
+            <div className='form-container'>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className='form-content'>
+                        {form_item.map((item, index) => {
+                            return <div className='form-item-wrapper' key={index}>
+                                <div className='form-item-label'><Text level={2}>{item.label}</Text></div>
+                                <div className='form-item-input'>
+                                    <Input
+                                        error={!!errors[item.name]}
+                                        placeholder={item.placeholder}
+                                        variant='filled'
+                                        name={item.name}
+                                        type={item.type}
+                                        inputRef={item.register}
+                                    />
+                                    {errors[item.name] && <span className='error-message'>{errors[item.name].message}</span>}
+                                </div>
+                            </div>
+                        })}
+                    </div>
+                    <Button>Սեղմել</Button>
+                </form>
+            </div>
+        </Spin>
     </Container>
 }
 

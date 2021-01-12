@@ -10,6 +10,10 @@ import SignUp from "./components/SignUp";
 import Footer from "./components/Footer";
 import Lesson from "./components/Lesson/lesson";
 import CreateLesson from "./components/Admin/Create Lesson";
+import Test from "./components/Test";
+
+const isAdmin = localStorage.getItem('user-type') === 'admin';
+console.log('isAdmin', isAdmin)
 
 const App = () => {
   return (
@@ -28,9 +32,14 @@ const App = () => {
           <Route path="/lesson">
             <Lesson />
           </Route>
-            <Route path="/admin">
-                <CreateLesson />
+          {
+            isAdmin && <Route path="/admin">
+              <CreateLesson/>
             </Route>
+          }
+          <Route path="/test">
+             <Test />
+          </Route>
         </Switch>
           <Footer />
       </Router>

@@ -3,19 +3,19 @@
   justify-content: center;
   padding: 3% 0;
   .button-component {
-    background-color: #306407;
+    background-color: #0a0a23;
     color: #FFE9E9;
     border: none;
     outline: none;
     cursor: pointer;
     &:hover {
-      background: #40840B;
+      background: #181856;
     }
     &:active {
-      background: #306407;
+      background: #181856;
     }
     &:focus {
-      background: #5FB71A;
+      background: #181856;
     }
   }
 }

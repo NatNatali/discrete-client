@@ -1,8 +1,8 @@
 import React from 'react';
 import './index.scss'
 
-const Text = ({level,children}) => {
-    return <span className={`level-${level}`}>
+const Text = ({ level, children, onClick = () => null }) => {
+    return <span className={`level-${level}`} onClick={onClick}>
         {children}
     </span>;
 }
