@@ -5,9 +5,19 @@ import { TextField } from "@material-ui/core";
 import Text from "../../../Shared/Text";
 import Container from "../../Container";
 import './index.scss'
+import Breadcrumb from "../../../Shared/Breadcrumb";
 
 const CreateLesson = () => {
+    const breadcrumbItems = [
+        {
+            name: 'Home',
+            link: '/'
+        }, {
+            name: 'Direct',
+        }
+    ]
     return <Container>
+        <Breadcrumb breadcrumbItems={breadcrumbItems}/>
         <div className='create-lesson'>
             <Text level={1}>Ավելացնել Դաս</Text>
             <Input type='text'

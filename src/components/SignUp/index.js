@@ -9,6 +9,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import axios  from 'axios'
 import Text from "../../Shared/Text";
 import { Spin } from 'antd';
+import Breadcrumb from "../../Shared/Breadcrumb";
 
 
 const SignUp = () => {
@@ -127,7 +128,17 @@ const SignUp = () => {
         })
     }];
 
+    const breadcrumbItems = [
+        {
+            name: 'Home',
+            link: '/'
+        }, {
+            name: (inSignUp ? 'SIgn-Up' : 'Sign-In'),
+        }
+    ]
+
     return <Container>
+        <Breadcrumb breadcrumbItems={breadcrumbItems}/>
         <Spin
             spinning={loading}
         >

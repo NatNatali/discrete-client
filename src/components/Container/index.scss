@@ -4,5 +4,6 @@ $full-height: 100vh;
 
 .main {
   min-height: calc(#{$full-height} - #{$f-height} - #{$h-height});
+  background: rgb(232, 232, 232);
 }
 
