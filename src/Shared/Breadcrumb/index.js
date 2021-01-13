@@ -13,7 +13,7 @@ const Breadcrumb = ({ breadcrumbItems }) => {
                     (index + 1) !== breadcrumbItems.length
                         ? <Link to={item.link}>
                             <span className='bread-childs'><Text level={4}>{item.name}</Text></span>
-                        </Link> : <span className='lastbread-child' ><Text level={4}>{item.name}</Text></span>
+                        </Link> : <span className='lastbread-child' ><Text level='5'>{item.name}</Text></span>
                 }
             </AntdBreadcrumb.Item>
         })}

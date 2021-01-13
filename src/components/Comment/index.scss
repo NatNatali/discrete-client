@@ -1,0 +1,25 @@
+.comment-chat {
+  display: flex;
+  justify-content: center;
+}
+.comment-form {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 190px;
+  width: 100%;
+}
+.comment-input {
+  width: 50%;
+  padding-right: 10px;
+}
+.comment-items {
+  display: flex;
+  flex-flow: column;
+  width: 60%;
+  border: 1px solid;
+  margin: auto;
+  word-wrap: break-word;
+  height: 160px;
+  overflow: auto
+}

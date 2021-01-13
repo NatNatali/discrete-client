@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import Lesson from "./components/Lesson/lesson";
 import CreateLesson from "./components/Admin/Create Lesson";
 import Test from "./components/Test";
+import Comment from "./components/Comment";
 
 const isAdmin = localStorage.getItem('user-type') === 'admin';
 console.log('isAdmin', isAdmin)
@@ -39,6 +40,9 @@ const App = () => {
           }
           <Route path="/test">
              <Test />
+          </Route>
+          <Route path="/comments">
+             <Comment />
           </Route>
         </Switch>
           <Footer />

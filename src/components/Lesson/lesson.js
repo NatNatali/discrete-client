@@ -20,10 +20,10 @@ const Lesson = () => {
 
     const breadcrumbItems = [
         {
-            name: 'Home',
+            name: 'Գլխավոր էջ',
             link: '/'
         }, {
-            name: 'Lessons',
+            name: 'Դաս',
         }
     ]
 

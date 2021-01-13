@@ -5,13 +5,13 @@ import Breadcrumb from "../../Shared/Breadcrumb";
 const Test = () => {
     const breadcrumbItems = [
         {
-            name: 'Home',
+            name: 'Գլխավոր էջ',
             link: '/'
         }, {
-            name: 'Lessons',
+            name: 'Դաս',
             link: '/lesson'
         }, {
-            name: 'Test',
+            name: 'Թեստ',
         }
     ]
 

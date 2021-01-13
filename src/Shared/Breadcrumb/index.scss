@@ -9,4 +9,7 @@
 .bread-childs {
   text-decoration: none;
   color: #11142c;
+  :hover {
+    text-decoration: underline;
+  }
 }

@@ -130,10 +130,10 @@ const SignUp = () => {
 
     const breadcrumbItems = [
         {
-            name: 'Home',
+            name: 'Գլխավոր էջ',
             link: '/'
         }, {
-            name: (inSignUp ? 'SIgn-Up' : 'Sign-In'),
+            name: (inSignUp ? 'Գրանցում' : 'Մուտք'),
         }
     ]
 
@@ -184,7 +184,9 @@ const SignUp = () => {
                             </div>
                         })}
                     </div>
-                    <Button>Սեղմել</Button>
+                    <div className='sign-in-submit'>
+                        <Button><Text level='1'>Սեղմել</Text></Button>
+                    </div>
                 </form>
             </div>
         </Spin>

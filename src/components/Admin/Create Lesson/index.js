@@ -10,10 +10,10 @@ import Breadcrumb from "../../../Shared/Breadcrumb";
 const CreateLesson = () => {
     const breadcrumbItems = [
         {
-            name: 'Home',
+            name: 'Գլխավոր էջ',
             link: '/'
         }, {
-            name: 'Direct',
+            name: 'Ստեղծել Դաս',
         }
     ]
     return <Container>
@@ -31,11 +31,11 @@ const CreateLesson = () => {
                 variant="filled"
                 fullWidth
             />
-            <Button>Ստեղծել</Button>
+            <Button><Text level='1'>Ստեղծել</Text></Button>
         </div>
         <div className='create-test'>
             <Text level={1}>Ավելացնել Թեստ</Text>
-            <Button>Ստեղծել</Button>
+            <Button><Text level='1'>Ստեղծել</Text></Button>
         </div>
     </Container>
 }

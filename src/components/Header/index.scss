@@ -18,12 +18,14 @@
     text-decoration: none;
     &:hover{
       color: rgb(232, 232, 232);
+      text-shadow: 1px 1px 2px black, 0 0 1em white;
     }
     a{
       color: white;
       text-decoration: none;
       &:hover{
         color: rgb(232, 232, 232);
+        text-shadow: 1px 1px 2px black, 0 0 1em white;
       }
     }
   }
@@ -31,10 +33,10 @@
 
 .menu-item-color {
   color: rgb(232, 232, 232) !important;
-  text-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
+  text-shadow: 1px 1px 2px black, 0 0 1em white;
   a {
     color: rgb(232, 232, 232) !important;
-    text-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
+    text-shadow: 1px 1px 2px black, 0 0 1em white;
   }
 }
 
