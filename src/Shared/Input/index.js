@@ -5,10 +5,12 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 const useStyles = makeStyles({
     root: {
         '& .MuiInputBase-root': {
-            borderRadius: '0'
+            borderRadius: '0',
+            backgroundColor: '#e8f0fe'
         },
         '&.MuiTextField-root': {
-            width: '100%'
+            width: '100%',
+            backgroundColor: '#e8f0fe'
         },
         // '& .MuiInputBase-root.Mui-focused': {
         //     outline: '2px solid #619273',
@@ -20,7 +22,7 @@ const useStyles = makeStyles({
         },
         '& .Mui-focused.MuiFilledInput-underline:before': {
             borderBottom: 'none',
-            outline: 'none'
+            outline: 'none',
         },
         '& .MuiInputBase-root.Mui-error': {
             outline: '2px solid #A91919',

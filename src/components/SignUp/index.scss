@@ -67,6 +67,20 @@
       width: 98%;
     }
   }
+  .form-container {
+    .form-content {
+      .form-item-wrapper {
+        justify-content: space-around;
+      }
+    }
+  }
+  .form-container {
+    .form-content {
+      .form-item-input {
+        flex-basis: 50%;
+      }
+    }
+  }
 }
 
 
