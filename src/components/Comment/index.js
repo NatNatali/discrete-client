@@ -5,6 +5,9 @@ import Input from "../../Shared/Input";
 import Button from "../../Shared/Button";
 import './index.scss'
 import Text from "../../Shared/Text";
+import { Tabs } from 'antd';
+import { Tooltip } from 'antd';
+const { TabPane } = Tabs;
 
 const Comment = () => {
     const [inputValue, setInputValue] = useState('')
@@ -33,27 +36,42 @@ const Comment = () => {
 
     return <Container>
         <Breadcrumb breadcrumbItems={breadcrumbItems}/>
-        <div className='comment-chat'>
-        <div className='comment-items'>
-            {displayValue.map((item, index) => {
-                return <div key={index}>
-                    {index}   {item}
+        <div>
+            <div className='comment-wrapper'>
+                <div className='tab-items-container'>
+                    <Tabs defaultActiveKey="1" tabPosition='left'>
+                        {[...Array.from({ length: 7 }, (v, i) => i)].map(i => (
+                            <TabPane tab={<Tooltip placement="topLeft" title='AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'>{'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'}</Tooltip>} key={i} disabled={i === 28}>
+                                <div className='comment-items'>
+                                    {displayValue.map((item, index) => {
+                                        return <div className='comment-item' key={index}>
+                                            {index}   {item}
+                                        </div>
+                                    })}
+                                </div>
+                            </TabPane>
+                        ))}
+                    </Tabs>
                 </div>
-            })}
-        </div>
-
-        <div className='comment-form'>
-            <div className='comment-input'>
-                <Input
-                    value={inputValue}
-                    onChange={(e) => {setInputValue(e.target.value)}}
-                    type='text'
-                    label='Մեկնաբանություն'
-                    variant='filled'
-                />
             </div>
-        <Button onClick={() => handleButtonClick()}><Text level='4'>Ավելացնել</Text></Button>
-        </div>
+            <div className='comment-chat'>
+                <div className='comment-form'>
+                    <div className='comment-input'>
+                        <Input
+                            value={inputValue}
+                            onChange={(e) => {setInputValue(e.target.value)}}
+                            type='text'
+                            label={<Text level='4'>{'Մեկնաբանություն'}</Text>}
+                            variant='filled'
+                        />
+                    </div>
+                    <Button onClick={() => handleButtonClick()}>
+                        <Text level='4'>
+                            Ավելացնել
+                        </Text>
+                    </Button>
+                </div>
+            </div>
         </div>
     </Container>
 }
