@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef, useLayoutEffect} from 'react'
 import Container from "../Container";
 import Breadcrumb from "../../Shared/Breadcrumb";
 import Input from "../../Shared/Input";
@@ -20,6 +20,16 @@ const Comment = () => {
             console.log(newItem);
         }
     }
+
+    useLayoutEffect(() => {
+        if(displayValue?.length) {
+            const scrollEl = document.querySelector('.comment-items');
+            if (scrollEl){
+                const { scrollHeight } = scrollEl;
+                scrollEl.scrollTo(0, scrollHeight);
+            }
+        }
+    }, [displayValue]);
 
     useEffect(() => {
         setInputValue('')
@@ -65,7 +75,7 @@ const Comment = () => {
                             variant='filled'
                         />
                     </div>
-                    <Button onClick={() => handleButtonClick()}>
+                    <Button onClick={() => handleButtonClick()} >
                         <Text level='4'>
                             Ավելացնել
                         </Text>
