@@ -1,3 +1,10 @@
-.create-lesson,.create-test {
+.create-lesson {
   text-align: center;
+}
+
+.jodit-container {
+  min-height: 500px!important;
+  .jodit-wysiwyg {
+    min-height: 403px!important;
+  }
 }

@@ -54,9 +54,11 @@ const Comment = () => {
                             <TabPane tab={<Tooltip placement="topLeft" title='AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'>{'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'}</Tooltip>} key={i} disabled={i === 28}>
                                 <div className='comment-items'>
                                     {displayValue.map((item, index) => {
-                                        return <div className='comment-item' key={index}>
+                                        return <Text key={index}>
+                                            <div className='comment-item'>
                                             {index}   {item}
-                                        </div>
+                                          </div>
+                                        </Text>
                                     })}
                                 </div>
                             </TabPane>

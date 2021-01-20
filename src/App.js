@@ -8,10 +8,10 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import SignUp from "./components/SignUp";
 import Footer from "./components/Footer";
-import Lesson from "./components/Lesson/lesson";
 import CreateLesson from "./components/Admin/Create Lesson";
 import Test from "./components/Test";
 import Comment from "./components/Comment";
+import Lesson from "./components/Lesson";
 
 const isAdmin = localStorage.getItem('user-type') === 'admin';
 console.log('isAdmin', isAdmin)
@@ -34,9 +34,9 @@ const App = () => {
             <Lesson />
           </Route>
           {
-            isAdmin && <Route path="/admin">
+          <Route path="/admin">
               <CreateLesson/>
-            </Route>
+          </Route>
           }
           <Route path="/test">
              <Test />
