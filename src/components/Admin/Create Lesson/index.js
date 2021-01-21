@@ -15,7 +15,7 @@ const CreateLesson = () => {
     const onCreateLesson = content => {
         console.log(content);
         if(content){
-            axios.post(`http://localhost:3030/lessons/lesson`, content).then(res => {
+            axios.post(`http://localhost:3030/lessons/lesson`, { lecture: content }).then(res => {
                 console.log('res', res)
             })
         }
@@ -30,16 +30,7 @@ const CreateLesson = () => {
         }
     ]
 
-
-
-    const convertHtmlToText = (html) => {
-        const divContainer= document.createElement("div");
-        divContainer.innerHTML = html;
-        return divContainer.textContent || divContainer.innerText || "";
-    }
-
-    const lecture =convertHtmlToText(content)
-    console.log(lecture)
+    console.log(content)
 
     return <Container>
         <Breadcrumb breadcrumbItems={breadcrumbItems}/>

@@ -12,6 +12,7 @@ import CreateLesson from "./components/Admin/Create Lesson";
 import Test from "./components/Test";
 import Comment from "./components/Comment";
 import Lesson from "./components/Lesson";
+import SingleLesson from "./components/SingleLesson";
 
 const isAdmin = localStorage.getItem('user-type') === 'admin';
 console.log('isAdmin', isAdmin)
@@ -30,8 +31,11 @@ const App = () => {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/lesson">
+          <Route exact path="/lesson">
             <Lesson />
+          </Route>
+          <Route path="/lesson/:chapterId/lecture/:lectureId">
+            <SingleLesson />
           </Route>
           {
           <Route path="/admin">
