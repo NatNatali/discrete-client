@@ -2,9 +2,23 @@ import React, {useEffect, useState} from 'react';
 import Container from "../Container";
 import axios from "axios";
 import {useParams} from "react-router";
+import './index.scss'
+import Breadcrumb from "../../Shared/Breadcrumb";
 
 const SingleLesson = () => {
     let { lectureId } = useParams();
+
+    const breadcrumbItems = [
+        {
+            name: 'Գլխավոր էջ',
+            link: '/'
+        }, {
+            name: 'Դաս',
+            link: '/lesson'
+        }, {
+            name: 'SingleLecture',
+        }
+    ]
 
     const [lectureContent, setLectureContent] = useState('');
     useEffect(() => {
@@ -13,12 +27,14 @@ const SingleLesson = () => {
         });
     },[lectureId])
     return <Container>
-        <div
-            dangerouslySetInnerHTML={{
-                __html: lectureContent
-            }}
-            style={{width: '100%'}}
-        />
+        <Breadcrumb breadcrumbItems={breadcrumbItems}/>
+        <div className='SLcontainer'>
+            <div
+                dangerouslySetInnerHTML={{
+                    __html: lectureContent
+                }}
+            />
+        </div>
     </Container>;
 };
 

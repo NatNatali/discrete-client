@@ -27,7 +27,7 @@ const Lesson = () => {
             title: 'chapter title1',
             lectures: [
                 {
-                    id: 6,
+                    id: 29,
                     name: 'lecture name1',
                     content: 'some content in html1'
                 }
