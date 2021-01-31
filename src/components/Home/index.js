@@ -1,12 +1,11 @@
-import React from 'react';
-import './index.scss';
 import Container from '../Container';
+import './index.scss';
 
 
-const Home = () => {
-    return <Container>
+const Home = () => (
+  <Container>
 
-    </Container>
-}
+  </Container>
+);
 
-export default Home
+export default Home;

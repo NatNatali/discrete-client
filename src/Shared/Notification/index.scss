@@ -1,0 +1,44 @@
+.success-toast {
+  background-color: #009E22 !important;
+}
+
+.info-toast {
+  .ant-notification-notice-message, .ant-notification-notice-description {
+    color: #11142C !important;
+  }
+}
+
+.warning-toast {
+  background-color: #F4A55E !important;
+}
+
+.error-toast {
+  background-color: #EA2139 !important;
+}
+
+.success-toast, .error-toast, .info-toast, .warning-toast {
+  position: relative;
+  overflow: visible !important;
+  padding: 10px 21px !important;
+  .ant-notification-notice-message, .ant-notification-notice-description {
+    color: white;
+    font-family: Muli, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .ant-notification-notice-icon {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .ant-notification-notice-close {
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    background-color: rgba(0, 0, 0, 0);
+    .ant-notification-close-x {
+      color: #11142C;
+    }
+  }
+}
