@@ -10,7 +10,7 @@ export const defaultState = {
 const profile = produce((state, action) => {
   switch (action.type) {
     case getProfileAction.requestTypes.SUCCESS:
-      state.type = action.type;
+      state.type = action.userType;
       state.message = action.message;
       break;
     case getProfileAction.requestTypes.FAILURE:

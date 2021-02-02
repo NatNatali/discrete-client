@@ -1,7 +1,12 @@
-import { getProfileAction } from '../actions/profile.actions';
-import { getProfileApi } from '../services/profile.services';
+import { getProfileAction, signUpAction } from '../actions/profile.actions';
+import { getProfileApi, signUpApi } from '../services/profile.services';
 
-export const watchForgotPassword = {
+export const watchGetProfile = {
   ...getProfileAction,
   api: getProfileApi,
+};
+
+export const watchSignUp = {
+  ...signUpAction,
+  api: signUpApi,
 };

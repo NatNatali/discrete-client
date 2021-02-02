@@ -28,7 +28,6 @@ const CreateLesson = () => {
   };
 
   const onCreateLesson = content => {
-    console.log(content);
     if (content){
       axios.post('http://localhost:3030/lessons/lesson', { lecture: content }).then(res => {
         console.log('res', res);

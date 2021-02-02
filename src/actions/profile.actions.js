@@ -1,5 +1,5 @@
 import { makeRequestAction } from './action-generator';
-import { successToast } from '../Shared/Notification';
+import { errorToast, successToast } from '../Shared/Notification';
 import history from '../histoty';
 
 export const getProfileAction = makeRequestAction('GET_PROFILE', {
@@ -12,10 +12,28 @@ export const getProfileAction = makeRequestAction('GET_PROFILE', {
       history.push('/');
     }
     return {
-      type: response.type,
+      userType: response.type,
     };
   },
   onFailure(_, error) {
-    console.log(error);
+    return {
+      error
+    };
+  }
+});
+
+export const signUpAction = makeRequestAction('SIGN_UP', {
+  onSuccess(params, response){
+    history.push('/sign-in');
+    successToast('Your account was created Successfully!');
+    return {
+      response,
+    };
+  },
+  onFailure(params, error) {
+    errorToast('Something went wrong!');
+    return {
+      error
+    };
   }
 });

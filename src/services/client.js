@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const token = localStorage.getItem('user');
+const token = localStorage.getItem('token');
 const url = 'http://localhost:3030';
 
 const authToken = token ? 'Bearer ' + token : undefined;

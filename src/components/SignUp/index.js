@@ -1,22 +1,19 @@
-import { useRef, Fragment, useEffect, useState } from 'react';
+import { useRef, Fragment, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useLocation, useHistory, Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Spin } from 'antd';
-import axios from 'axios';
 import Button from '../../Shared/Button';
 import Container from '../Container';
 import Input from '../../Shared/Input';
 import Text from '../../Shared/Text';
 import Breadcrumb from '../../Shared/Breadcrumb';
-import { getProfileAction } from '../../actions/profile.actions';
+import { getProfileAction, signUpAction } from '../../actions/profile.actions';
 import './index.scss';
 
 
 const SignUp = () => {
-  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  let history = useHistory();
   let location = useLocation();
   const inSignUp = location.pathname === '/sign-up';
 
@@ -31,11 +28,7 @@ const SignUp = () => {
   const onSubmit = data => {
 
     if (inSignUp) {
-      setLoading(true);
-      axios.post('http://localhost:3030/users/sign-up', data).then(() => {
-        history.push('/sign-in');
-        setLoading(false);
-      });
+      dispatch(signUpAction.request(data));
     } else {
       dispatch(getProfileAction.request(data));
     }
@@ -134,7 +127,7 @@ const SignUp = () => {
     <Container>
       <Breadcrumb breadcrumbItems={breadcrumbItems} />
       <Spin
-        spinning={loading}
+        spinning={false}
       >
         <div className='texts-field'>
           <Text level={1} className='sign-up'>{inSignUp ? 'Գրանցում' : 'Մուտք'}</Text> <br />
