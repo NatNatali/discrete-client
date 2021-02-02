@@ -1,38 +1,21 @@
 import { useState } from 'react';
 import JoditEditor from 'jodit-react';
-import axios from 'axios';
-import { Modal } from 'antd';
+import { useDispatch } from 'react-redux';
 import Button from '../../../Shared/Button';
 import Text from '../../../Shared/Text';
 import Container from '../../Container';
 import Breadcrumb from '../../../Shared/Breadcrumb';
-import { useHistory } from 'react-router-dom';
 import Input from '../../../Shared/Input';
 import './index.scss';
+import { createLessonAction } from '../../../actions/lessons.actions';
 
 const CreateLesson = () => {
-  let history = useHistory();
+  const dispatch = useDispatch();
   const [content, setContent] = useState('');
-
-  const info = () => {
-    Modal.info({
-      title: 'Դասը ավելացվել է',
-      content: 'Դասը հաջողությամբ ավելացվել է',
-      okText: 'Տեսնել Դասը',
-      onOk: () => {
-        history.push('/lesson');
-      },
-      closable: true,
-      centered: true
-    });
-  };
 
   const onCreateLesson = content => {
     if (content){
-      axios.post('http://localhost:3030/lessons/lesson', { lecture: content }).then(res => {
-        console.log('res', res);
-        info();
-      });
+      dispatch(createLessonAction.request({ lecture: content }));
     }
   };
 
@@ -44,8 +27,6 @@ const CreateLesson = () => {
       name: 'Ստեղծել Դաս',
     }
   ];
-
-  console.log(content);
 
   return (
     <Container>
