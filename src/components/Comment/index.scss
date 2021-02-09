@@ -25,7 +25,7 @@
       word-wrap: break-word;
       overflow: auto;
       scroll-behavior: auto;
-      height: calc(100vh - 190px - 200px - 56px - 40px);
+      min-height: calc(100vh - 200px);
       padding: 10px;
       .comment-item {
         display: block;

@@ -3,7 +3,7 @@ import produce from 'immer';
 import { getProfileAction } from '../actions/profile.actions';
 
 export const defaultState = {
-  type: 'user',
+  type: '',
   message: '',
 };
 

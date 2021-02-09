@@ -24,3 +24,12 @@ export const getSingleLessonAction = makeRequestAction('GET_SINGLE_LESSON', {
     return error;
   }
 });
+
+export const getAllLessonsAction = makeRequestAction('GET_ALL_LESSONS', {
+  onSuccess(params, response) {
+    return response;
+  },
+  onFailure(params, error) {
+    return error;
+  }
+});

@@ -12,10 +12,29 @@
   :first-child {
     padding-right: 16px;
   }
+  .read-more {
+    background: none;
+    border: none;
+    color: #1890ff;
+    &:hover {
+      cursor: pointer
+    }
+    &:focus {
+      outline: none;
+    }
+  }
 }
 .main {
   .ant-collapse {
     width: 90%;
     margin: auto;
+  }
+}
+
+.lesson-header {
+  display: flex;
+  justify-content: space-between;
+  .add-lesson-btn {
+    padding:10px 20px;
   }
 }

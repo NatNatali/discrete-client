@@ -18,6 +18,7 @@ import { isAdmin } from './selectors/profile.selectors';
 
 const App = () => {
   const isAdminType = useSelector(isAdmin);
+  console.log(isAdminType);
   return (
     <Router history={history}>
       <Header />
@@ -35,11 +36,11 @@ const App = () => {
           <Lesson />
         </Route>
         <Route path='/lesson/:chapterId/lecture/:lectureId' component={SingleLesson} />
-        {
-          isAdminType && (
-            <Route exact path='/admin' component={CreateLesson} />
-          )
-        }
+        {/* { */}
+        {/* isAdminType && ( */}
+        <Route exact path='/admin' component={CreateLesson} />
+        //   )
+        // }
         <Route exact path='/test'>
           <Test />
         </Route>

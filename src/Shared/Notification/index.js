@@ -1,13 +1,11 @@
 import { notification } from 'antd';
-import { CloseOutlined } from '@ant-design/icons';
+// import { CloseOutlined } from '@ant-design/icons';
 import './index.scss';
 
 export const successToast = (title) => {
   notification.success({
     message: title,
     className: 'success-toast',
-    closeIcon: <CloseOutlined />,
-    icon: <CloseOutlined />,
     top: 86,
   });
 };
@@ -17,7 +15,6 @@ export const infoToast = (title, message) => {
     message: title,
     description: message,
     className: 'info-toast',
-    closeIcon: <CloseOutlined />,
     top: 86,
   });
 };
@@ -27,8 +24,6 @@ export const warningToast = (title, message) => {
     message: title,
     description: message,
     className: 'warning-toast',
-    closeIcon: <CloseOutlined />,
-    icon: <CloseOutlined />,
     top: 86,
   });
 };
@@ -38,8 +33,6 @@ export const errorToast = (title, message) => {
     message: title,
     description: message,
     className: 'error-toast',
-    closeIcon: <CloseOutlined />,
-    icon: <CloseOutlined />,
     top: 86,
   });
 };
