@@ -8,11 +8,12 @@ import Header from './components/Header';
 import Home from './components/Home';
 import SignUp from './components/SignUp';
 import Footer from './components/Footer';
-import CreateLesson from './components/Admin/Create Lesson';
+import CreateLesson from './components/Admin/CreateLesson';
 import Test from './components/Test';
 import Comment from './components/Comment';
 import Lesson from './components/Lesson';
 import SingleLesson from './components/SingleLesson';
+import CreateTest from './components/Admin/CreateTest';
 import history from './histoty';
 import { isAdmin } from './selectors/profile.selectors';
 
@@ -41,7 +42,10 @@ const App = () => {
         <Route exact path='/admin' component={CreateLesson} />
         //   )
         // }
-        <Route exact path='/test'>
+        <Route exact path='/create-test'>
+          <CreateTest />
+        </Route>
+        <Route exact path='/section/:sectionId/test'>
           <Test />
         </Route>
         <Route exacts path='/comments'>

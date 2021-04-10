@@ -4,12 +4,14 @@ import * as profile from './profile.saga';
 import * as lessons from './lessons.saga';
 import * as chapters from './chapters.saga';
 import * as sections from './sections.saga';
+import * as tests from './test.saga';
 
 const combinedSagas = {
   ...profile,
   ...lessons,
   ...chapters,
-  ...sections
+  ...sections,
+  ...tests,
 };
 
 export default function* rootSaga() {

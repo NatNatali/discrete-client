@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import JoditEditor from 'jodit-react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Select, Input, Modal } from 'antd';
+import JoditEditor from 'jodit-react';
 import { createLessonAction } from '../../../actions/lessons.actions';
 import { createChapterAction, getChaptersAction } from '../../../actions/chapters.actions';
 import { chaptersSelector } from '../../../selectors/chapters.selectors';
@@ -10,20 +11,19 @@ import Button from '../../../Shared/Button';
 import Text from '../../../Shared/Text';
 import Container from '../../Container';
 import Breadcrumb from '../../../Shared/Breadcrumb';
-import { Select, Input, Modal } from 'antd';
-import './index.scss';
 import { errorToast } from '../../../Shared/Notification';
+import './index.scss';
 
+const { Option } = Select;
 const CreateLesson = () => {
-  const { Option } = Select;
   const dispatch = useDispatch();
   const [content, setContent] = useState('');
   const [contentInput, setContentInput] = useState('');
   const [sectionContent, setSectionContent] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
-  const [chapterSelectValue, setChapterSelectValue] = useState('');
-  const [createMode, setCreateMode] = useState('');
+  const [chapterSelectValue, setChapterSelectValue] = useState(null);
   const [selectedSectionId, setSelectedSectionId] = useState(null);
+  const [createMode, setCreateMode] = useState('');
 
   const chapters = useSelector(chaptersSelector);
   const sections = useSelector(sectionsSelector);
@@ -47,6 +47,9 @@ const CreateLesson = () => {
     {
       name: 'Գլխավոր էջ',
       link: '/'
+    }, {
+      name: 'Դաս',
+      link: '/lesson'
     }, {
       name: 'Ստեղծել Դաս',
     }

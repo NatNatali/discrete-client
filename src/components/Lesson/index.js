@@ -39,6 +39,11 @@ const Lesson = () => {
       <div className='lesson-header'>
         <Breadcrumb breadcrumbItems={breadcrumbItems} />
         <div className='add-lesson-btn'>
+          <Button onClick={() => history.push('/create-test')}>
+            <Text level='3'>
+              Ավելացնել Թեստ
+            </Text>
+          </Button>
           <Button onClick={() => history.push('/admin')}>
             <Text level='3'>
               Ավելացնել Դաս
@@ -70,7 +75,7 @@ const Lesson = () => {
                               >
                                 Կարդալ Ավելին
                               </button>
-                              <Link to='/test'>
+                              <Link to={`/section/${section.id}/test`}>
                                 ԹԵՍՏ
                               </Link>
                             </div>
