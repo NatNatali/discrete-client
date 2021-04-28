@@ -6,6 +6,8 @@ import lessons from './lessons.reducer';
 import chapters from './chapters.reducer';
 import sections from './sections.reducer';
 import tests from './tests.reducer';
+import statistics from './app.reducer';
+import comment from './comments.reducer';
 
 const combinedReducers = {
   loading,
@@ -14,7 +16,9 @@ const combinedReducers = {
   lessons,
   chapters,
   sections,
-  tests
+  tests,
+  statistics,
+  comment
 };
 
 export default combineReducers(combinedReducers);

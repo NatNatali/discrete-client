@@ -1,0 +1,57 @@
+.ld-section-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - 100px);
+
+  > img {
+    height: 100%;
+  }
+}
+
+.scroll-icon-wrapper {
+  position: absolute;
+  right: 5%;
+  bottom: 50px;
+}
+
+.scroll-icon {
+  cursor: pointer;
+  font-size: 48px;
+  animation: down 1.5s infinite;
+}
+
+@keyframes down {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translateY(15px);
+  }
+  40% {
+    transform: translate(0);
+  }
+}
+
+.ld-description {
+  padding: 5%;
+  display: flex;
+  background-color: lightgray;
+}
+
+.desc-test-wrapper {
+  padding: 0 20px;
+  text-align: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+.ld-statistic {
+  padding: 50px 5%;
+  display: flex;
+  justify-content: space-between;
+}
+.ld-statistic-inner {
+  text-align: center;
+}

@@ -9,7 +9,6 @@ export const defaultState = {
 };
 
 const tests = produce((state, action) => {
-  console.log('action', action);
   switch (action.type) {
     case getSectionTestsAction.requestTypes.SUCCESS:
       state.test = action.tests;

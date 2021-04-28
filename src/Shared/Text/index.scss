@@ -17,20 +17,10 @@
   font-size: 14px;
 }
 
-@media only screen and (max-width: 768px) {
-  .level-1 {
-    font-size: 36px;
-  }
+.textBold {
+  font-weight: 900;
+}
 
-  .level-2 {
-    font-size: 18px;
-  }
-
-  .level-3 {
-    font-size: 14px;
-  }
-
-  .level-4 {
-    font-size: 12px;
-  }
+.bolderText {
+  font-weight: 600;
 }

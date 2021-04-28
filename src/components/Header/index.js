@@ -48,23 +48,25 @@ const Header = () => {
   return (
     <div className='h-header'>
       <div className='h-logo'><Link to='/'><img src={mainLogo} alt='' /></Link></div>
-      <div className='h-items-container'>
-        <Link to='/'>
-          <Text level={2}>
-            <HomeOutlined
-              className={location.pathname === '/' ? 'menu-item menu-item-color' : 'menu-item'}
-            />
-          </Text>
-        </Link>
-        {
-          menu_item.map((item, index) => <div className={location.pathname === item.link ? item.className : 'menu-item'} key={index}><Link to={item.link}><Text level={2}>{item.name}</Text></Link></div>)
-        }
-        <div className='auth-icon'>
-          <Text level={2} onClick={() => handleAvatarClick()}>
-            <UserOutlined
-              className={location.pathname === '/sign-in' || location.pathname === '/sign-up' ? 'menu-item menu-item-color' : 'menu-item'}
-            />
-          </Text>
+      <div className='h-items-wrapper'>
+        <div className='h-items-container'>
+          <Link to='/'>
+            <Text level={2}>
+              <HomeOutlined
+                className={location.pathname === '/' ? 'menu-item menu-item-color' : 'menu-item'}
+              />
+            </Text>
+          </Link>
+          {
+            menu_item.map((item, index) => <div className={location.pathname === item.link ? item.className : 'menu-item'} key={index}><Link to={item.link}><Text level={2}>{item.name}</Text></Link></div>)
+          }
+          <div className='auth-icon'>
+            <Text level={2} onClick={() => handleAvatarClick()}>
+              <UserOutlined
+                className={location.pathname === '/sign-in' || location.pathname === '/sign-up' ? 'menu-item menu-item-color' : 'menu-item'}
+              />
+            </Text>
+          </div>
         </div>
       </div>
     </div>

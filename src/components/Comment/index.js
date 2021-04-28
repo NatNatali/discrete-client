@@ -1,5 +1,10 @@
 import { useEffect, useState, useLayoutEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Tabs, Tooltip } from 'antd';
+import { addCommentAction, getCommentsAction } from '../../actions/comment.actions';
+import { getChaptersAction } from '../../actions/chapters.actions';
+import { chaptersSelector } from '../../selectors/chapters.selectors';
+import { commentsSelector } from '../../selectors/comments.selectors';
 import Container from '../Container';
 import Breadcrumb from '../../Shared/Breadcrumb';
 import Input from '../../Shared/Input';
@@ -10,30 +15,54 @@ import './index.scss';
 const { TabPane } = Tabs;
 
 const Comment = () => {
+  const dispatch = useDispatch();
+  const chapters = useSelector(chaptersSelector);
+  const comments = useSelector(commentsSelector);
   const [inputValue, setInputValue] = useState('');
-  const [displayValue, setDisplayValue] = useState([]);
+  const [activeTab, setActiveTab] = useState('');
 
   const handleButtonClick = () => {
     if (inputValue) {
-      const newItem = displayValue.concat(inputValue);
-      setDisplayValue(newItem);
-      console.log(newItem);
+      dispatch(addCommentAction.request({
+        comment: inputValue,
+        chapterId: activeTab,
+      }));
     }
   };
 
+  const handleTabChange = (key) => {
+    if (activeTab !== key) {
+      setActiveTab(key);
+    }
+  };
+
+  useEffect(() => {
+    setActiveTab(chapters[0]?.id);
+  }, [chapters]);
+
+  useEffect(() => {
+    dispatch(getChaptersAction.request());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (!!activeTab) {
+      dispatch(getCommentsAction.request({ chapterId: activeTab }));
+    }
+  }, [activeTab, dispatch]);
+
   useLayoutEffect(() => {
-    if (displayValue?.length) {
+    if (comments?.length) {
       const scrollEl = document.querySelector('.comment-items');
       if (scrollEl){
         const { scrollHeight } = scrollEl;
         scrollEl.scrollTo(0, scrollHeight);
       }
     }
-  }, [displayValue]);
+  }, [comments]);
 
   useEffect(() => {
     setInputValue('');
-  }, [displayValue]);
+  }, [comments]);
 
   const breadcrumbItems = [
     {
@@ -50,14 +79,17 @@ const Comment = () => {
       <div>
         <div className='comment-wrapper'>
           <div className='tab-items-container'>
-            <Tabs defaultActiveKey='1' tabPosition='left'>
-              {[...Array.from({ length: 7 }, (v, i) => i)].map(i => (
-                <TabPane tab={<Tooltip placement='topLeft' title='AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</Tooltip>} key={i} disabled={i === 28}>
+            <Tabs tabPosition='left' onChange={handleTabChange}>
+              {chapters?.map(i => (
+                <TabPane
+                  tab={<Tooltip placement='topLeft' title={i.title}>{i.title}</Tooltip>}
+                  key={i.id}
+                >
                   <div className='comment-items'>
-                    {displayValue.map((item, index) => (
+                    {comments?.map((item, index) => (
                       <Text key={index}>
                         <div className='comment-item'>
-                          {index}   {item}
+                          {index}   {item.content}
                         </div>
                       </Text>
                     ))}
@@ -72,7 +104,9 @@ const Comment = () => {
             <div className='comment-input'>
               <Input
                 value={inputValue}
-                onChange={(e) => {setInputValue(e.target.value);}}
+                onChange={(e) => {
+                  setInputValue(e.target.value);
+                }}
                 type='text'
                 label={<Text level='4'>Մեկնաբանություն</Text>}
                 variant='filled'

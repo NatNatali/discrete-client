@@ -1,9 +1,9 @@
-$h-height: 190px;
-$f-height: 200px;
+$h-height: 100px;
+$f-height: 29px;
 $full-height: 100vh;
 
 .main {
   min-height: calc(#{$full-height} - #{$f-height} - #{$h-height});
-  background: rgb(232, 232, 232);
+  background: white;
 }
 
