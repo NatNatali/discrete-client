@@ -13,6 +13,7 @@ export const getProfileAction = makeRequestAction('GET_PROFILE', {
     }
     return {
       userType: response.type,
+      id: response.id,
     };
   },
   onFailure(_, error) {

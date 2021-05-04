@@ -1,7 +1,11 @@
 import './index.scss';
 
-const Button = ({ children, onClick }) => (
-  <button type='submit' name='submit' onClick={onClick} className='button-component'>
+const Button = ({ children, onClick, ...props }) => (
+  <button
+    onClick={onClick}
+    className='button-component'
+    {...props}
+  >
     {children}
   </button>
 );

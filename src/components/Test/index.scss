@@ -7,3 +7,22 @@
   flex-flow: column nowrap;
   justify-content: center;
 }
+
+.pass-test-question {
+  margin-top: 5px;
+}
+
+.test-answer-option {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.pass-test-submit {
+  margin: 15px 0;
+}
+
+.indicator-text {
+  display: inline-block;
+  color: #009E22;
+  margin-left: 7px;
+}

@@ -5,6 +5,7 @@ import { addCommentAction, getCommentsAction } from '../../actions/comment.actio
 import { getChaptersAction } from '../../actions/chapters.actions';
 import { chaptersSelector } from '../../selectors/chapters.selectors';
 import { commentsSelector } from '../../selectors/comments.selectors';
+import { userProfile } from '../../selectors/profile.selectors';
 import Container from '../Container';
 import Breadcrumb from '../../Shared/Breadcrumb';
 import Input from '../../Shared/Input';
@@ -18,6 +19,7 @@ const Comment = () => {
   const dispatch = useDispatch();
   const chapters = useSelector(chaptersSelector);
   const comments = useSelector(commentsSelector);
+  const userDetails = useSelector(userProfile);
   const [inputValue, setInputValue] = useState('');
   const [activeTab, setActiveTab] = useState('');
 
@@ -26,6 +28,7 @@ const Comment = () => {
       dispatch(addCommentAction.request({
         comment: inputValue,
         chapterId: activeTab,
+        number: userDetails.number,
       }));
     }
   };

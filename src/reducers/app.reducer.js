@@ -14,9 +14,9 @@ const statistics = produce((state, action) => {
   switch (action.type) {
     case getStatisticsAction.requestTypes.SUCCESS :
       state.statistics = {
-        usersCount: action.users,
-        lessonsCount: action.lessons,
-        visitsCount: action.visits,
+        usersCount: action.statistics.users,
+        lessonsCount: action.statistics.lessons,
+        visitsCount: action.statistics.visits,
       };
       break;
     default:

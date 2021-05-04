@@ -1,8 +1,20 @@
 .test-form-wrapper {
+  margin-top: 20px;
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
-.input-checkbox {
-  display: flex;
+.question-wrapper {
+  margin-top: 10px;
+}
+
+.question-input {
+  margin-bottom: 10px;
+}
+
+.submit-wrapper {
+  border-top: 1px solid #11142c;
+  padding-top: 10px;
+  margin-top: 10px;
 }

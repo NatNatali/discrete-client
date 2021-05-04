@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Select, Input, Modal } from 'antd';
-import JoditEditor from 'jodit-react';
+import { Select, Input, Modal, Row, Col } from 'antd';
+import katex from 'katex';
+import SunEditor from 'suneditor-react';
 import { createLessonAction } from '../../../actions/lessons.actions';
 import { createChapterAction, getChaptersAction } from '../../../actions/chapters.actions';
 import { chaptersSelector } from '../../../selectors/chapters.selectors';
@@ -12,9 +13,11 @@ import Text from '../../../Shared/Text';
 import Container from '../../Container';
 import Breadcrumb from '../../../Shared/Breadcrumb';
 import { errorToast } from '../../../Shared/Notification';
+import 'suneditor/dist/css/suneditor.min.css';
 import './index.scss';
 
 const { Option } = Select;
+
 const CreateLesson = () => {
   const dispatch = useDispatch();
   const [content, setContent] = useState('');
@@ -113,83 +116,105 @@ const CreateLesson = () => {
       </Modal>
       <Breadcrumb breadcrumbItems={breadcrumbItems} />
       <div style={{ textAlign: 'center' }}><Text level={1}>Ստեղծել Դաս</Text></div>
-      <Select
-        placeholder='Գլուխ'
-        style={{ width: '50%' }}
-        onChange={selectValueChange}
-        dropdownRender={(originNode) => (
-          <div>
-            <div>
-              <button
-                onClick={() => {
-                  setModalVisible(true);
-                  setCreateMode('chapter');
-                }}
-                style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-              >
-                +Add Chapter title
-              </button>
-            </div>
-            <div>{originNode}</div>
-          </div>
-        )}
-      >
-        {
-          chapters?.map((chapter) => (
-            <Option key={chapter.id} value={chapter.id}>
-              {chapter.title}
-            </Option>
-          ))
-        }
-      </Select>
-      <Select
-        placeholder='Թեմա'
-        style={{ width: '50%' }}
-        disabled={!chapterSelectValue}
-        onChange={(value) => {
-          setSelectedSectionId(value);
-        }}
-        dropdownRender={(originNode) => (
-          <div>
-            <div>
-              <button
-                style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-                onClick={() => {
-                  setCreateMode('section');
-                  setModalVisible(true);
-                }}
-              >
-                +Add Tema title
-              </button>
-            </div>
-            <div>{originNode}</div>
-          </div>
-        )}
-      >
-        {
-          sections?.map(section => (
-            <Option key={section.id} value={section.id}>
-              {section.title}
-            </Option>
-          ))
-        }
-      </Select>
+      <Row>
+        <Col span={8} offset={3}>
+          <Select
+            placeholder='Գլուխ'
+            style={{ width: '100%' }}
+            onChange={selectValueChange}
+            dropdownRender={(originNode) => (
+              <div>
+                <div>
+                  <button
+                    onClick={() => {
+                      setModalVisible(true);
+                      setCreateMode('chapter');
+                    }}
+                    style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                  >
+                    +Add Chapter title
+                  </button>
+                </div>
+                <div>{originNode}</div>
+              </div>
+            )}
+          >
+            {
+              chapters?.map((chapter) => (
+                <Option key={chapter.id} value={chapter.id}>
+                  {chapter.title}
+                </Option>
+              ))
+            }
+          </Select>
+        </Col>
+        <Col span={8} offset={2}>
+          <Select
+            placeholder='Թեմա'
+            style={{ width: '100%' }}
+            disabled={!chapterSelectValue}
+            onChange={(value) => {
+              setSelectedSectionId(value);
+            }}
+            dropdownRender={(originNode) => (
+              <div>
+                <div>
+                  <button
+                    style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                    onClick={() => {
+                      setCreateMode('section');
+                      setModalVisible(true);
+                    }}
+                  >
+                    +Add Tema title
+                  </button>
+                </div>
+                <div>{originNode}</div>
+              </div>
+            )}
+          >
+            {
+              sections?.map(section => (
+                <Option key={section.id} value={section.id}>
+                  {section.title}
+                </Option>
+              ))
+            }
+          </Select>
+        </Col>
+      </Row>
       <div className='create-lesson'>
-        <JoditEditor
-          value={content}
-          onChange={value => {
-            setContent(value);
-          }}
-          tabIndex={1} // tabIndex of textarea
-        />
-        <Button
-          disabled={!selectedSectionId}
-          onClick={() => {
-            onCreateLesson(content);
-          }}
-        >
-          <Text level='1'>Ստեղծել</Text>
-        </Button>
+        <Row>
+          <Col span={20} offset={2}>
+            <SunEditor
+              height='300'
+              placeholder='Please type here...'
+              defaultValue={content}
+              onChange={value => {
+                setContent(value);
+              }}
+              setOptions={{
+                katex: katex,
+                buttonList: [
+                  ['undo', 'redo'],
+                  ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript', 'math'],
+                  ['font', 'fontSize', 'formatBlock'],
+                  ['align', 'horizontalRule', 'list', 'lineHeight', 'table'],
+                ],
+              }}
+            />
+          </Col>
+        </Row>
+        <div className='submit-lesson-wrapper'>
+          <Button
+            disabled={!selectedSectionId}
+            onClick={() => {
+              onCreateLesson(content);
+            }}
+          >
+            <Text>Ստեղծել</Text>
+          </Button>
+        </div>
       </div>
     </Container>
   );

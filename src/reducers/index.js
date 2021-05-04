@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux';
+import storage from 'redux-persist/lib/storage';
+import { persistReducer } from 'redux-persist';
 import loading from './loading.reducer';
 import error from './error.reducer';
 import profile from './profile.reducer';
@@ -9,10 +11,15 @@ import tests from './tests.reducer';
 import statistics from './app.reducer';
 import comment from './comments.reducer';
 
+const authPersistConfig = {
+  key: 'auth',
+  storage: storage,
+};
+
 const combinedReducers = {
   loading,
   error,
-  profile,
+  profile: persistReducer(authPersistConfig, profile),
   lessons,
   chapters,
   sections,

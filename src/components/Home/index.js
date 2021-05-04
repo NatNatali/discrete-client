@@ -11,22 +11,6 @@ import description from '../../assets/images/description.jpg';
 import Text from '../../Shared/Text';
 import './index.scss';
 
-function animateValue(id, start, end, duration) {
-  if (start === end) return;
-  const range = end - start;
-  let current = start;
-  const increment = end > start ? 1 : -1;
-  const stepTime = Math.abs(Math.floor(duration / range));
-  const obj = document.getElementById(id);
-  const timer = setInterval(function() {
-    current += increment;
-    obj.innerHTML = current;
-    if (current === end) {
-      clearInterval(timer);
-    }
-  }, stepTime);
-}
-
 const desc = 'Դիսկրետ մաթեմատիկան մաթեմատիկայի ճյուղերից մեկն է,' +
     ' որի ուսումնասիրության առարկա են հանդիսանում դիսկրետ (ընդհատ)' +
     ' բնույթ ունեցող մաթեմատիկական կառուցվածքների հատկությունները։' +
@@ -35,6 +19,7 @@ const desc = 'Դիսկրետ մաթեմատիկան մաթեմատիկայի ճ�
 
 const Home = () => {
   const [isOnTop, setIsOnTop] = useState(true);
+  const [hasWorked, setHasWorked] = useState(false);
   const dispatch = useDispatch();
   const stats = useSelector(chaptersSelector);
   const statsArr = [
@@ -52,6 +37,23 @@ const Home = () => {
       count: stats.lessonsCount,
     }
   ];
+
+  const animateValue = (id, start, end, duration) => {
+    if (hasWorked) return;
+    if (start === end) return;
+    const range = end - start;
+    let current = start;
+    const increment = end > start ? 1 : -1;
+    const stepTime = Math.abs(Math.floor(duration / range));
+    const obj = document.getElementById(id);
+    const timer = setInterval(function() {
+      current += increment;
+      obj.innerHTML = current;
+      if (current === end) {
+        clearInterval(timer);
+      }
+    }, stepTime);
+  };
 
   useEffect(() => {
     const hasVisited = localStorage.getItem('visited');
@@ -127,9 +129,10 @@ const Home = () => {
               </Text>
             </div>
             <VisibilitySensor
-              onChange={() => {
-                if (stats) {
-                  animateValue(value.id, 0, value.count, 5000);
+              onChange={(isVisible) => {
+                if (stats && isVisible) {
+                  setHasWorked(true);
+                  animateValue(value.id, 0, +value.count, 5000);
                 }
               }}
             >

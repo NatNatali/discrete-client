@@ -1,22 +1,15 @@
-
-  .button-component {
-    background-color: white;
-    color: #11142c;
-    border: 2px solid #11142c;
-    border-radius: 6px;
-    outline: none;
-    cursor: pointer;
-    &:hover {
-      background: #11142c;
-      color: white;
-      border: 2px solid white;
-    }
-    //&:active {
-    //  background: #181856;
-    //}
-    //&:focus {
-    //  background: #181856;
-    //}
+.button-component {
+  background-color: white;
+  color: #11142c;
+  border: 2px solid #11142c;
+  border-radius: 6px;
+  outline: none;
+  cursor: pointer;
+  &:hover {
+    background: #11142c;
+    color: white;
+    border: 2px solid white;
   }
+}
 
 

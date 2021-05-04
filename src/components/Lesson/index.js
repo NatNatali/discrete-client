@@ -6,6 +6,7 @@ import Container from '../Container';
 import Breadcrumb from '../../Shared/Breadcrumb';
 import Button from '../../Shared/Button';
 import Text from '../../Shared/Text';
+import { isAdmin } from '../../selectors/profile.selectors';
 import { allLessonSelector } from '../../selectors/lessons.selectors';
 import { getAllLessonsAction } from '../../actions/lessons.actions';
 import './index.scss';
@@ -22,6 +23,7 @@ const breadcrumbItems = [
 
 const Lesson = () => {
   const dispatch = useDispatch();
+  const isAdminType = useSelector(isAdmin);
   const history = useHistory();
 
   useEffect(() => {
@@ -38,18 +40,20 @@ const Lesson = () => {
     <Container>
       <div className='lesson-header'>
         <Breadcrumb breadcrumbItems={breadcrumbItems} />
-        <div className='add-lesson-btn'>
-          <Button onClick={() => history.push('/create-test')}>
-            <Text level='3'>
-              Ավելացնել Թեստ
-            </Text>
-          </Button>
-          <Button onClick={() => history.push('/admin')}>
-            <Text level='3'>
-              Ավելացնել Դաս
-            </Text>
-          </Button>
-        </div>
+        {isAdminType && (
+          <div className='add-lesson-btn'>
+            <Button onClick={() => history.push('/create-test')}>
+              <Text level='3'>
+                Ավելացնել Թեստ
+              </Text>
+            </Button>
+            <Button onClick={() => history.push('/admin')}>
+              <Text level='3'>
+                Ավելացնել Դաս
+              </Text>
+            </Button>
+          </div>
+        )}
       </div>
       <Collapse onChange={collapseOnChange}>
         {

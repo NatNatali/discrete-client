@@ -1,7 +1,7 @@
-import { useEffect, useState, Fragment } from 'react';
+import { useEffect, useState } from 'react';
 import { Checkbox } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { Select } from 'antd';
+import { Select, Row, Col } from 'antd';
 import { useForm } from 'react-hook-form';
 import Container from '../../Container';
 import Input from '../../../Shared/Input';
@@ -98,7 +98,9 @@ const CreateTest = () => {
     }
   ];
 
-  const AddQuestion = () => {
+  const AddQuestion = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
     const newCount = [...questionsCount];
     newCount.push({ checkboxes: [
       {
@@ -126,50 +128,60 @@ const CreateTest = () => {
     }
   ];
 
-  const RemoveQuestion = (index) => {
+  const RemoveQuestion = (e, index) => {
+    e.stopPropagation();
+    e.preventDefault();
     const deletedQuestions = [...questionsCount];
-    setQuestionCount(deletedQuestions.filter((_, idx) => index !== idx));
+    if (questionsCount.length > 1) {
+      setQuestionCount(deletedQuestions.filter((_, idx) => index !== idx));
+    }
   };
 
   return (
     <Container>
       <Breadcrumb breadcrumbItems={breadcrumbItems} />
       <div style={{ textAlign: 'center' }}><Text level={1}>Ստեղծել Թեստ</Text></div>
-      <Select
-        placeholder='Գլուխ'
-        style={{ width: '50%' }}
-        onChange={selectValueChange}
-      >
-        {
-          chapters?.map((chapter) => (
-            <Option key={chapter.id} value={chapter.id}>
-              {chapter.title}
-            </Option>
-          ))
-        }
-      </Select>
-      <Select
-        placeholder='Թեմա'
-        style={{ width: '50%' }}
-        disabled={!chapterSelectValue}
-        onChange={(value) => {
-          setSelectedSectionId(value);
-        }}
-      >
-        {
-          sections?.map(section => (
-            <Option key={section.id} value={section.id}>
-              {section.title}
-            </Option>
-          ))
-        }
-      </Select>
+      <Row>
+        <Col span={8} offset={3}>
+          <Select
+            placeholder='Գլուխ'
+            style={{ width: '100%' }}
+            onChange={selectValueChange}
+          >
+            {
+              chapters?.map((chapter) => (
+                <Option key={chapter.id} value={chapter.id}>
+                  {chapter.title}
+                </Option>
+              ))
+            }
+          </Select>
+        </Col>
+        <Col span={8} offset={2}>
+          <Select
+            placeholder='Թեմա'
+            style={{ width: '100%' }}
+            disabled={!chapterSelectValue}
+            onChange={(value) => {
+              setSelectedSectionId(value);
+            }}
+          >
+            {
+              sections?.map(section => (
+                <Option key={section.id} value={section.id}>
+                  {section.title}
+                </Option>
+              ))
+            }
+          </Select>
+        </Col>
+      </Row>
       <div className='test-form-wrapper'>
         <form onSubmit={handleSubmit(onSubmit)}>
           {
             questionsCount?.map((checkboxes, index) => (
-              <Fragment key={index}>
-                <div>
+              <div key={index} className='question-wrapper'>
+                <div className='question-input'>
                   <Input
                     name={`question_${index}`}
                     inputRef={register({
@@ -177,37 +189,53 @@ const CreateTest = () => {
                     })}
                   />
                   {errors['question'] && <span className='error-message'>{errors['question'].message}</span>}
-                  <Button onClick={() => RemoveQuestion(index)}>Remove</Button>
                 </div>
                 {
                   testForm?.map((item, i) => (
                     <div key={i} className='input-checkbox'>
-                      <Input
-                        name={`answer_${index}_${i}`}
-                        inputRef={item.inputReg}
-                      />
-                      {
-                        errors[`answer_${index}_${i}`] && (
-                          <span className='error-message'>
-                            {errors[`answer_${index}_${i}`].message}
-                          </span>
-                        )
-                      }
-                      <Checkbox
-                        name={`correct_${index}_${i}`}
-                        inputRef={register}
-                        checked={checkboxes.checkboxes[i]?.checked}
-                        onChange={() => handleCheckbox(index, i)}
-                      />
+                      <Row>
+                        <Col>
+                          <Input
+                            name={`answer_${index}_${i}`}
+                            inputRef={item.inputReg}
+                          />
+                          {
+                            errors[`answer_${index}_${i}`] && (
+                              <span className='error-message'>
+                                {errors[`answer_${index}_${i}`].message}
+                              </span>
+                            )
+                          }
+                        </Col>
+                        <Col>
+                          <Checkbox
+                            name={`correct_${index}_${i}`}
+                            inputRef={register}
+                            checked={checkboxes.checkboxes[i]?.checked}
+                            onChange={() => handleCheckbox(index, i)}
+                          />
+                        </Col>
+                      </Row>
                     </div>
                   ))
                 }
-              </Fragment>
+                <Button
+                  onClick={(e) => RemoveQuestion(e, index)}
+                >
+                  <Text>Remove Question</Text>
+                </Button>
+              </div>
             ))
           }
-          <div>
-            <Button type='submit'><Text level='1'>Սեղմել</Text></Button>
-            <Button onClick={() => AddQuestion()}><Text level='1'>+</Text></Button>
+          <div className='submit-wrapper'>
+            <Row>
+              <Col span={12} align='left'>
+                <Button onClick={e => AddQuestion(e)}><Text>Add Question</Text></Button>
+              </Col>
+              <Col span={12} align='right'>
+                <Button type='submit'><Text>Սեղմել</Text></Button>
+              </Col>
+            </Row>
           </div>
         </form>
       </div>

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { Radio } from 'antd';
+import { Radio, Row, Col } from 'antd';
 import Container from '../Container';
 import Breadcrumb from '../../Shared/Breadcrumb';
 import {
@@ -56,59 +56,67 @@ const Test = () => {
   return (
     <Container>
       <Breadcrumb breadcrumbItems={breadcrumbItems} />
-      <div>
-        {
-          test?.length ? (
-            <form onSubmit={handleSubmit(onSubmit)}>
-              {test?.map((question, i) => (
-                <div key={question.id}>
-                  <div>
-                    {question.questions[0].question}
+      <Row>
+        <Col span={20} offset={2}>
+          {
+            test?.length ? (
+              <form onSubmit={handleSubmit(onSubmit)}>
+                {test?.map((question, i) => (
+                  <div key={question.id}>
+                    <div className='pass-test-question'>
+                      <Text level={3} textBold='bolderText'>
+                        {i + 1}.{' '}{question.questions[0].question}
+                      </Text>
+                    </div>
+                    <Radio.Group name='radio'>
+                      {question.questions[0]?.answers.map((answer, index) => (
+                        <div key={index}>
+                          <label>
+                            <input
+                              type='radio'
+                              ref={register}
+                              value={answer.id}
+                              name={`test_${i}`}
+                              id={`radio_${index}`}
+                            />
+                            <div className='test-answer-option'>
+                              <Text>
+                                {answer?.option}
+                              </Text>
+                            </div>
+                          </label>
+                          <div className='indicator-text'>
+                            {correctAnswers?.[i]?.id === answer.id && (
+                              <Text>Right</Text>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </Radio.Group>
                   </div>
-                  <Radio.Group name='radio'>
-                    {question.questions[0]?.answers.map((answer, index) => (
-                      <div key={index}>
-                        <label>
-                          <input
-                            type='radio'
-                            ref={register}
-                            value={answer.id}
-                            name={`test_${i}`}
-                            id={`radio_${index}`}
-                          />
-                          <Text>
-                            {answer?.option}
-                          </Text>
-                        </label>
-                        {correctAnswers?.[i]?.id === answer.id && (
-                          <Text>Right</Text>
-                        )}
-                      </div>
-                    ))}
-                  </Radio.Group>
+                ))}
+                {!!correctCount && (
+                  <div>
+                    The Result is {resultsPercent}%
+                  </div>
+                )}
+                {correctCount === 0 && (
+                  <div>
+                    The Result is 0%
+                  </div>
+                )}
+                <div className='pass-test-submit'>
+                  <Button type='submit'><Text>Ավարտել</Text></Button>
                 </div>
-              ))}
-              {!!correctCount && (
-                <div>
-                  The Result is {resultsPercent}%
-                </div>
-              )}
-              {correctCount === 0 && (
-                <div>
-                  The Result is 0%
-                </div>
-              )}
+              </form>
+            ) : (
               <div>
-                <Button type='submit'><Text level='1'>Ավարտել</Text></Button>
+                No tests are available
               </div>
-            </form>
-          ) : (
-            <div>
-              No tests are available
-            </div>
-          )
-        }
-      </div>
+            )
+          }
+        </Col>
+      </Row>
     </Container>
   );
 };

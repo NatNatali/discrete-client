@@ -1,4 +1,5 @@
 import { makeRequestAction } from './action-generator';
+import history from '../histoty';
 
 export const getSectionTestsAction = makeRequestAction('GET_TESTS', {
   onSuccess(params, response) {
@@ -11,6 +12,7 @@ export const getSectionTestsAction = makeRequestAction('GET_TESTS', {
 
 export const createTestAction = makeRequestAction('CREATE_TEST', {
   onSuccess(params, response) {
+    history.push('/lesson');
     return response;
   },
   onFailure(params, error) {
