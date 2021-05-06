@@ -1,15 +1,34 @@
-import { Link, useLocation, useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
 import { HomeOutlined, UserOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { Modal } from 'antd';
+import { logOutAction } from '../../actions/profile.actions';
+import { userProfile } from '../../selectors/profile.selectors';
 import Text from '../../Shared/Text';
 import mainLogo from '../../assets/images/logo_transparent.png';
+import history from '../../histoty';
 import './index.scss';
 
 const Header = () => {
-  let history = useHistory();
   let location = useLocation();
+  const dispatch = useDispatch();
+  const profile = useSelector(userProfile);
+  const { isAuth, type } = profile;
 
-  const isAuth = localStorage.getItem('token')?.length;
+  useEffect(() => {
+    if (!isAuth && location.pathname !== '/sign-up') {
+      history.push('/sign-in');
+    }
+  }, [isAuth, location.pathname]);
+
+  useEffect(() => {
+    if (type === 'admin') {
+      history.push('/admin');
+    } else {
+      history.push('/');
+    }
+  }, [type, isAuth]);
 
   const menu_item = [
     {
@@ -39,6 +58,7 @@ const Header = () => {
       onOk: () => {
         localStorage.clear();
         history.push('/sign-in');
+        dispatch(logOutAction.request());
       },
       closable: true,
       centered: true

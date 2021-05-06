@@ -1,4 +1,4 @@
-import { makeRequestAction } from './action-generator';
+import { makeAction, makeRequestAction } from './action-generator';
 import { errorToast, successToast } from '../Shared/Notification';
 import history from '../histoty';
 
@@ -6,11 +6,6 @@ export const getProfileAction = makeRequestAction('GET_PROFILE', {
   onSuccess(_, response){
     successToast('You logged in successfully');
     localStorage.setItem('token', response.token);
-    if (response.type === 'admin') {
-      history.push('/admin');
-    } else {
-      history.push('/');
-    }
     return {
       userType: response.type,
       id: response.id,
@@ -38,3 +33,5 @@ export const signUpAction = makeRequestAction('SIGN_UP', {
     };
   }
 });
+
+export const logOutAction = makeAction('LOG_OUT');
