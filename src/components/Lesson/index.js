@@ -1,8 +1,9 @@
-import { useEffect, Fragment } from 'react';
+import { useEffect, Fragment, useState } from 'react';
 import { Collapse } from 'antd';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Container from '../Container';
+import UserModal from './UserModal';
 import Breadcrumb from '../../Shared/Breadcrumb';
 import Button from '../../Shared/Button';
 import Text from '../../Shared/Text';
@@ -22,6 +23,7 @@ const breadcrumbItems = [
 ];
 
 const Lesson = () => {
+  const [userModalVisible, setUserModalVisible] = useState(false);
   const dispatch = useDispatch();
   const isAdminType = useSelector(isAdmin);
   const history = useHistory();
@@ -29,10 +31,6 @@ const Lesson = () => {
   useEffect(() => {
     dispatch(getAllLessonsAction.request());
   }, [dispatch]);
-
-  const collapseOnChange = (key) => {
-    console.log(key);
-  };
 
   const allLessons = useSelector(allLessonSelector);
 
@@ -55,14 +53,33 @@ const Lesson = () => {
           </div>
         )}
       </div>
-      <Collapse onChange={collapseOnChange}>
+      <Collapse>
         {
           allLessons?.map((chapter) => (
             <Panel header={chapter.title} key={chapter.id}>
               <Collapse>
                 {
                   chapter.sections?.map((section) => (
-                    <Panel header={section.title} key={section.id}>
+                    <Panel
+                      header={(
+                        <div className='section-title'>
+                          <div>
+                            {section.title}
+                          </div>
+                          <div
+                            className='section-title__students'
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              setUserModalVisible(true);
+                            }}
+                          >
+                            Ուսանողներ
+                          </div>
+                        </div>
+                      )}
+                      key={section.id}
+                    >
                       {
                         section.lessons?.map((lesson) => (
                           <Fragment key={lesson.id}>
@@ -75,7 +92,7 @@ const Lesson = () => {
                             <div className='lesson-links'>
                               <button
                                 className='read-more'
-                                onClick={() => history.push(`/lesson/${chapter.id}/lecture/${lesson.id}`)}
+                                onClick={() => history.push(`/lesson/${section.id}/lecture/${lesson.id}`)}
                               >
                                 Կարդալ Ավելին
                               </button>
@@ -83,6 +100,14 @@ const Lesson = () => {
                                 ԹԵՍՏ
                               </Link>
                             </div>
+                            {
+                              userModalVisible && (
+                                <UserModal
+                                  sectionId={lesson.id}
+                                  setVisible={setUserModalVisible}
+                                />
+                              )
+                            }
                           </Fragment>
                         ))
                       }

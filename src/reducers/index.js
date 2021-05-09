@@ -13,7 +13,7 @@ import comment from './comments.reducer';
 
 const authPersistConfig = {
   key: 'auth',
-  storage: storage,
+  storage,
 };
 
 const combinedReducers = {

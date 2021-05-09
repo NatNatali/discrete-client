@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Select, Input, Modal, Row, Col } from 'antd';
 import katex from 'katex';
 import SunEditor from 'suneditor-react';
-import { createLessonAction } from '../../../actions/lessons.actions';
+import { createLessonAction, getSingleLessonAction } from '../../../actions/lessons.actions';
 import { createChapterAction, getChaptersAction } from '../../../actions/chapters.actions';
 import { chaptersSelector } from '../../../selectors/chapters.selectors';
 import { createSectionAction, getSectionsAction } from '../../../actions/sections.actions';
 import { sectionsSelector } from '../../../selectors/sections.selectors';
+import { singleLessonSelector } from '../../../selectors/lessons.selectors';
 import Button from '../../../Shared/Button';
 import Text from '../../../Shared/Text';
 import Container from '../../Container';
@@ -30,6 +31,11 @@ const CreateLesson = () => {
 
   const chapters = useSelector(chaptersSelector);
   const sections = useSelector(sectionsSelector);
+  const lecture = useSelector(singleLessonSelector);
+
+  useEffect(() => {
+    setContent(lecture || '');
+  }, [lecture]);
 
   const onCreateLesson = content => {
     if (!content){
@@ -79,10 +85,15 @@ const CreateLesson = () => {
     }));
   };
 
-  const selectValueChange = (value) => {
+  const selectValueChange = useCallback((value) => {
     setChapterSelectValue(value);
     dispatch(getSectionsAction.request({ chapter_id: value }));
-  };
+  }, [dispatch]);
+
+  const handleSectionSelect = useCallback ((value) => {
+    setSelectedSectionId(value);
+    dispatch(getSingleLessonAction.request({ id: value }));
+  }, [dispatch]);
 
   return (
     <Container>
@@ -154,7 +165,7 @@ const CreateLesson = () => {
             style={{ width: '100%' }}
             disabled={!chapterSelectValue}
             onChange={(value) => {
-              setSelectedSectionId(value);
+              handleSectionSelect(value);
             }}
             dropdownRender={(originNode) => (
               <div>
@@ -189,7 +200,7 @@ const CreateLesson = () => {
             <SunEditor
               height='300'
               placeholder='Please type here...'
-              defaultValue={content}
+              setContents={content}
               onChange={value => {
                 setContent(value);
               }}

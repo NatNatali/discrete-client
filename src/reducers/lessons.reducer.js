@@ -1,9 +1,14 @@
 import produce from 'immer';
-import { getSingleLessonAction, getAllLessonsAction } from '../actions/lessons.actions';
+import {
+  getSingleLessonAction,
+  getAllLessonsAction,
+  getLessonUsersAction
+} from '../actions/lessons.actions';
 
 export const defaultState = {
   lecture: '',
   allLessons: [],
+  lessonUsers: [],
 };
 
 const lessons = produce((state, action) => {
@@ -13,6 +18,9 @@ const lessons = produce((state, action) => {
       break;
     case getAllLessonsAction.requestTypes.SUCCESS:
       state.allLessons = action.allLessons;
+      break;
+    case getLessonUsersAction.requestTypes.SUCCESS:
+      state.lessonUsers = action.users;
       break;
     default:
       break;

@@ -38,3 +38,16 @@
     padding:10px 20px;
   }
 }
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+
+  &__students {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

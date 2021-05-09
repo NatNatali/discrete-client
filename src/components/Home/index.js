@@ -82,10 +82,6 @@ const Home = () => {
     window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
   };
 
-  function onChange(a, b, c) {
-    console.log(a, b, c);
-  }
-
   const contentStyle = {
     minHeight: '160px',
     color: '#fff',
@@ -146,7 +142,7 @@ const Home = () => {
         ))}
       </div>
       <div>
-        <Carousel afterChange={onChange}>
+        <Carousel>
           <div>
             <div style={contentStyle}>
               <div>

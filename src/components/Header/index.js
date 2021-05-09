@@ -14,21 +14,14 @@ const Header = () => {
   let location = useLocation();
   const dispatch = useDispatch();
   const profile = useSelector(userProfile);
-  const { isAuth, type } = profile;
+  const { isAuth } = profile;
 
   useEffect(() => {
     if (!isAuth && location.pathname !== '/sign-up') {
       history.push('/sign-in');
     }
-  }, [isAuth, location.pathname]);
-
-  useEffect(() => {
-    if (type === 'admin') {
-      history.push('/admin');
-    } else {
-      history.push('/');
-    }
-  }, [type, isAuth]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuth]);
 
   const menu_item = [
     {

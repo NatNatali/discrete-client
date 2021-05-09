@@ -7,9 +7,9 @@ import rootSaga from './sagas';
 import rootReducer from './reducers';
 
 const sagaMiddleware = createSagaMiddleware();
-const middlewares = [sagaMiddleware];
 const persistConfig = {
   key: 'root',
+  whitelist: ['auth'],
   storage,
 };
 
@@ -18,7 +18,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const store = createStore(
   persistedReducer,
   {},
-  composeWithDevTools(applyMiddleware(...middlewares)),
+  composeWithDevTools(applyMiddleware(sagaMiddleware)),
 );
 export const persistor = persistStore(store);
 sagaMiddleware.run(rootSaga);

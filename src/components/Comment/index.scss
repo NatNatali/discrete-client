@@ -28,7 +28,8 @@
       min-height: calc(100vh - 200px);
       padding: 10px;
       .comment-item {
-        display: block;
+        display: flex;
+        margin-bottom: 10px;
       }
     }
   }
@@ -37,6 +38,19 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+}
+
+.comment-avatar {
+  background-color: #1890ff;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  padding: 3px 0 0 4px;
+}
+
+.comment-content {
+  flex: 1;
+  margin-left: 5px;
 }
 
 

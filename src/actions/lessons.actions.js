@@ -33,3 +33,21 @@ export const getAllLessonsAction = makeRequestAction('GET_ALL_LESSONS', {
     return error;
   }
 });
+
+export const passLessonAction = makeRequestAction('PASS_LESSON', {
+  onSuccess(params, response) {
+    return response;
+  },
+  onFailure(params, error) {
+    return error;
+  }
+});
+
+export const getLessonUsersAction = makeRequestAction('GET_LESSON_USERS', {
+  onSuccess(params, response) {
+    return response;
+  },
+  onFailure(params, error) {
+    return error;
+  }
+});

@@ -35,7 +35,7 @@ const App = () => {
         <Route exact path='/lesson'>
           <Lesson />
         </Route>
-        <Route path='/lesson/:chapterId/lecture/:lectureId' component={SingleLesson} />
+        <Route path='/lesson/:sectionId/lecture/:lectureId' component={SingleLesson} />
         {
           isAdminType && (
             <Route exact path='/admin' component={CreateLesson} />

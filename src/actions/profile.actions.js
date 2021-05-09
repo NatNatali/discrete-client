@@ -6,6 +6,7 @@ export const getProfileAction = makeRequestAction('GET_PROFILE', {
   onSuccess(_, response){
     successToast('You logged in successfully');
     localStorage.setItem('token', response.token);
+    history.push('/');
     return {
       userType: response.type,
       id: response.id,

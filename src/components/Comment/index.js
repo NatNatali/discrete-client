@@ -92,7 +92,14 @@ const Comment = () => {
                     {comments?.map((item, index) => (
                       <Text key={index}>
                         <div className='comment-item'>
-                          {index}   {item.content}
+                          <Tooltip title={`${item.user.first_name}` + ' ' + `${item.user.last_name}`}>
+                            <div className='comment-avatar'>
+                              {item.user.first_name[0]}.{item.user.last_name[0]}.
+                            </div>
+                          </Tooltip>
+                          <div className='comment-content'>
+                            {item.content}
+                          </div>
                         </div>
                       </Text>
                     ))}
